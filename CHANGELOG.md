@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.1.2](https://github.com/geertmeersman/miwa/tree/v0.1.2) (2023-05-06)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.1...v0.1.2)
+
+**Implemented enhancements:**
+
+- Ruff config, Debug off & delivery method sensor simplified [\#3](https://github.com/geertmeersman/miwa/pull/3) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.1.1](https://github.com/geertmeersman/miwa/tree/v0.1.1) (2023-05-06)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.0...v0.1.1)
