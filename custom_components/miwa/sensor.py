@@ -10,7 +10,6 @@ from homeassistant.components.sensor import SensorEntity
 from homeassistant.components.sensor import SensorEntityDescription
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CURRENCY_EURO
-from homeassistant.const import PERCENTAGE
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -35,7 +34,7 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
     MIWASensorDescription(key="user", icon="mdi:face-man"),
     MIWASensorDescription(key="info", icon="mdi:information"),
     MIWASensorDescription(key="product", icon="mdi:trash-can"),
-    MIWASensorDescription(key="subscription", icon="mdi:sim"),
+    MIWASensorDescription(key="verzending", icon="mdi:email-fast"),
     MIWASensorDescription(
         key="euro",
         icon="mdi:currency-eur",
@@ -48,30 +47,6 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
         device_class=SensorDeviceClass.MONETARY,
         native_unit_of_measurement="kg",
     ),
-    MIWASensorDescription(
-        key="euro_blocked",
-        icon="mdi:currency-eur-off",
-        device_class=SensorDeviceClass.MONETARY,
-        native_unit_of_measurement=CURRENCY_EURO,
-    ),
-    MIWASensorDescription(
-        key="euro_pending",
-        icon="mdi:timer-sand",
-        device_class=SensorDeviceClass.MONETARY,
-        native_unit_of_measurement=CURRENCY_EURO,
-    ),
-    MIWASensorDescription(
-        key="usage_percentage_mobile",
-        value_fn=lambda state: round(state, 1),
-        native_unit_of_measurement=PERCENTAGE,
-        icon="mdi:signal-4g",
-    ),
-    MIWASensorDescription(
-        key="remaining_days",
-        icon="mdi:calendar-end-outline",
-    ),
-    MIWASensorDescription(key="voice", icon="mdi:phone"),
-    MIWASensorDescription(key="sms", icon="mdi:message-processing"),
 ]
 
 

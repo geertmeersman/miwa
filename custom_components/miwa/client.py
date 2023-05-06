@@ -322,7 +322,7 @@ class MIWAClient:
                 data[key] = MIWAItem(
                     name="Verzendmethode aanrekening",
                     key=key,
-                    type="euro",
+                    type="verzending",
                     device_key=device_key,
                     device_name=device_name,
                     device_model=device_model,
@@ -337,7 +337,7 @@ class MIWAClient:
                 data[key] = MIWAItem(
                     name="Verzendmethode aanrekening",
                     key=key,
-                    type="euro",
+                    type="verzending",
                     device_key=device_key,
                     device_name=device_name,
                     device_model=device_model,
