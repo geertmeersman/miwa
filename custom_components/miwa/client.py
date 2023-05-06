@@ -318,36 +318,16 @@ class MIWAClient:
             log_debug("Verzend- en betaalmethoden:")
             log_debug(f"  Methode: {facturatie_instellingen.get('deliveryMethod')}")
             key = format_entity_name(f"{address_id} aanrekening methode")
-            if facturatie_instellingen.get("deliveryMethod") == "e-mail":
-                data[key] = MIWAItem(
-                    name="Verzendmethode aanrekening",
-                    key=key,
-                    type="verzending",
-                    device_key=device_key,
-                    device_name=device_name,
-                    device_model=device_model,
-                    state="Per email",
-                    extra_attributes=facturatie_instellingen,
-                )
-                log_debug(f"  Ontvanger: {facturatie_instellingen.get('email')}")
-                log_debug(
-                    f"  Verzender: {facturatie_instellingen.get('invoiceSenderEmail')}"
-                )
-            else:
-                data[key] = MIWAItem(
-                    name="Verzendmethode aanrekening",
-                    key=key,
-                    type="verzending",
-                    device_key=device_key,
-                    device_name=device_name,
-                    device_model=device_model,
-                    state="Per post",
-                    extra_attributes=facturatie_instellingen,
-                )
-                address = facturatie_instellingen.get("invoiceAddress")
-                log_debug(
-                    f"  Adres: {address.get('address_line')}, {address.get('postal_code')} {address.get('city')}"
-                )
+            data[key] = MIWAItem(
+                name="Verzendmethode aanrekening",
+                key=key,
+                type="verzending",
+                device_key=device_key,
+                device_name=device_name,
+                device_model=device_model,
+                state=facturatie_instellingen.get("deliveryMethod"),
+                extra_attributes=facturatie_instellingen,
+            )
             log_debug("Producten:")
             for product in self.mijn_producten(address_path):
                 log_debug(
