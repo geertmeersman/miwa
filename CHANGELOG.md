@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.1.1](https://github.com/geertmeersman/miwa/tree/v0.1.1) (2023-05-06)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.0...v0.1.1)
+
+**Fixed bugs:**
+
+- Verzending correction for sensor class [\#2](https://github.com/geertmeersman/miwa/pull/2) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.1.0](https://github.com/geertmeersman/miwa/tree/v0.1.0) (2023-05-06)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/5738c29a8f71cf01edb3bdfc2475b37a21a058e1...v0.1.0)
