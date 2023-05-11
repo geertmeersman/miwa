@@ -25,3 +25,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           prerelease: true
+
+      - name: 🔄　Update version in 'VERSION' and 'manifest.json' and push changes
+        env:
+          tag_name: ${{ steps.release_drafter.outputs.tag_name }}
+          GITHUB_REPO: ${{ github.event.repository.name }}
+        run: |
+          echo $tag_name
