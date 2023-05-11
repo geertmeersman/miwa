@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.3](https://github.com/geertmeersman/miwa/tree/v0.1.3) (2023-05-11)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.2...v0.1.3)
+
 ## [v0.1.2](https://github.com/geertmeersman/miwa/tree/v0.1.2) (2023-05-06)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.1...v0.1.2)
