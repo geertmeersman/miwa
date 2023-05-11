@@ -19,7 +19,6 @@ from .exceptions import MIWAException
 from .exceptions import MIWAServiceException
 from .models import MIWAItem
 from .utils import log_debug
-import os
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -30,7 +29,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         email=entry.data[CONF_EMAIL],
         password=entry.data[CONF_PASSWORD],
     )
-    os.remove("/config/.storage/vicare_token.save")
+
     dev_reg = dr.async_get(hass)
     hass.data[DOMAIN][entry.entry_id] = coordinator = MIWADataUpdateCoordinator(
         hass,
