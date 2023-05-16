@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.1.6](https://github.com/geertmeersman/miwa/tree/v0.1.6) (2023-05-11)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.5...v0.1.6)
+
+**Implemented enhancements:**
+
+- Prerelease [\#6](https://github.com/geertmeersman/miwa/pull/6) ([geertmeersman](https://github.com/geertmeersman))
+- Prerelease [\#5](https://github.com/geertmeersman/miwa/pull/5) ([geertmeersman](https://github.com/geertmeersman))
+
+**Documentation:**
+
+- Security advisory link updated [\#4](https://github.com/geertmeersman/miwa/pull/4) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.1.5](https://github.com/geertmeersman/miwa/tree/v0.1.5) (2023-05-11)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.4...v0.1.5)
@@ -24,7 +37,7 @@
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.0...v0.1.1)
 
-**Fixed bugs:**
+**Merged pull requests:**
 
 - Verzending correction for sensor class [\#2](https://github.com/geertmeersman/miwa/pull/2) ([geertmeersman](https://github.com/geertmeersman))
 
