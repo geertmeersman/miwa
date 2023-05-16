@@ -69,3 +69,11 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: Commit release notes
+      - name: Discord notification
+        env:
+          tag_name: ${{ steps.release_drafter.outputs.tag_name }}
+          GITHUB_REPO: ${{ github.event.repository.name }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "New release published: {{tag_name}} {{GITHUB_REPO}}."
