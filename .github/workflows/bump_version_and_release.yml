@@ -72,7 +72,6 @@ jobs:
       - name: Discord notification
         env:
           tag_name: ${{ steps.release_drafter.outputs.tag_name }}
-          GITHUB_REPOSITORY: ${{ github.event.repository.name }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
