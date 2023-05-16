@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.1.8](https://github.com/geertmeersman/miwa/tree/v0.1.8) (2023-05-16)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.7...v0.1.8)
+
+**Merged pull requests:**
+
+- Discord webhook [\#13](https://github.com/geertmeersman/miwa/pull/13) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.1.7](https://github.com/geertmeersman/miwa/tree/v0.1.7) (2023-05-16)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.6...v0.1.7)
