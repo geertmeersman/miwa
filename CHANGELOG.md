@@ -1,17 +1,25 @@
 # Changelog
 
-## [v0.1.6](https://github.com/geertmeersman/miwa/tree/v0.1.6) (2023-05-11)
+## [v0.1.6](https://github.com/geertmeersman/miwa/tree/v0.1.6) (2023-05-16)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.5...v0.1.6)
 
 **Implemented enhancements:**
 
+- Discord webhook [\#11](https://github.com/geertmeersman/miwa/pull/11) ([geertmeersman](https://github.com/geertmeersman))
+- Dev current [\#8](https://github.com/geertmeersman/miwa/pull/8) ([geertmeersman](https://github.com/geertmeersman))
 - Prerelease [\#6](https://github.com/geertmeersman/miwa/pull/6) ([geertmeersman](https://github.com/geertmeersman))
 - Prerelease [\#5](https://github.com/geertmeersman/miwa/pull/5) ([geertmeersman](https://github.com/geertmeersman))
 
 **Documentation:**
 
+- Prerelease [\#7](https://github.com/geertmeersman/miwa/pull/7) ([geertmeersman](https://github.com/geertmeersman))
 - Security advisory link updated [\#4](https://github.com/geertmeersman/miwa/pull/4) ([geertmeersman](https://github.com/geertmeersman))
+
+**Merged pull requests:**
+
+- Bump ruff from 0.0.265 to 0.0.267 [\#10](https://github.com/geertmeersman/miwa/pull/10) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump danielchabr/pr-labels-checker from 3.1 to 3.2 [\#9](https://github.com/geertmeersman/miwa/pull/9) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [v0.1.5](https://github.com/geertmeersman/miwa/tree/v0.1.5) (2023-05-11)
 
