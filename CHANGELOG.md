@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.1.9](https://github.com/geertmeersman/miwa/tree/v0.1.9) (2023-05-22)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.8...v0.1.9)
+
+**Implemented enhancements:**
+
+- Ondergrondse ledigingen, references \#16 [\#17](https://github.com/geertmeersman/miwa/pull/17) ([geertmeersman](https://github.com/geertmeersman))
+
+**Merged pull requests:**
+
+- Bump ruff from 0.0.267 to 0.0.269 [\#15](https://github.com/geertmeersman/miwa/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump danielchabr/pr-labels-checker from 3.2 to 3.3 [\#14](https://github.com/geertmeersman/miwa/pull/14) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.1.8](https://github.com/geertmeersman/miwa/tree/v0.1.8) (2023-05-16)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.7...v0.1.8)
