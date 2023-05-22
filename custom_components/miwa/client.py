@@ -330,7 +330,7 @@ class MIWAClient:
                                     f"{address_id} laatste lediging {fraction}"
                                 )
                                 data[key] = MIWAItem(
-                                    name=f"Laatste lediging {fraction} {emptying.get('emptied_on')[0:10]}",
+                                    name=f"{fraction} Laatste lediging {emptying.get('emptied_on')[0:10]}",
                                     key=key,
                                     type="gewicht",
                                     device_key=device_key,
@@ -374,7 +374,7 @@ class MIWAClient:
                                     f"{address_id} laatste ondergrondse lediging {fraction}"
                                 )
                                 data[key] = MIWAItem(
-                                    name=f"Laatste ondergrondse lediging {fraction} {dumping.get('dumped_on')[0:10]}",
+                                    name=f"{fraction} Laatste ondergrondse lediging {dumping.get('dumped_on')[0:10]}",
                                     key=key,
                                     type="dumping",
                                     device_key=device_key,
