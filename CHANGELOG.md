@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.2.0](https://github.com/geertmeersman/miwa/tree/v0.2.0) (2023-05-22)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.9...v0.2.0)
+
+**Implemented enhancements:**
+
+- Refactoring scopes and limited sensors for emptyings, references \#16 [\#18](https://github.com/geertmeersman/miwa/pull/18) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.1.9](https://github.com/geertmeersman/miwa/tree/v0.1.9) (2023-05-22)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.8...v0.1.9)
