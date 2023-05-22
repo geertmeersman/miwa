@@ -396,7 +396,7 @@ class MIWAClient:
                     device_name=device_name,
                     device_model=device_model,
                     state=(amount / 100),
-                    extra_attributes=payments,
+                    extra_attributes={"Betalingen": payments},
                 )
 
             if self.scope.get("view_invoices"):
