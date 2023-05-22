@@ -38,13 +38,19 @@ SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
     MIWASensorDescription(
         key="euro",
         icon="mdi:currency-eur",
-        device_class=SensorDeviceClass.WEIGHT,
+        device_class=SensorDeviceClass.MONETARY,
+        native_unit_of_measurement=CURRENCY_EURO,
+    ),
+    MIWASensorDescription(
+        key="dumping",
+        icon="mdi:truck-cargo-container",
+        device_class=SensorDeviceClass.MONETARY,
         native_unit_of_measurement=CURRENCY_EURO,
     ),
     MIWASensorDescription(
         key="gewicht",
         icon="mdi:weight-kilogram",
-        device_class=SensorDeviceClass.MONETARY,
+        device_class=SensorDeviceClass.WEIGHT,
         native_unit_of_measurement="kg",
     ),
 ]

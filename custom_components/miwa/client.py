@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import urllib
 
 from bs4 import BeautifulSoup
@@ -18,7 +19,8 @@ from .exceptions import MIWAServiceException
 from .models import MIWAEnvironment
 from .models import MIWAItem
 from .utils import format_entity_name
-from .utils import log_debug
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class MIWAClient:
@@ -56,20 +58,20 @@ class MIWAClient:
     ) -> dict:
         """Send a request to MIWA."""
         if data is None:
-            log_debug(f"{caller} Calling GET {url}")
+            _LOGGER.debug(f"{caller} Calling GET {url}")
             response = self.session.get(url, timeout=REQUEST_TIMEOUT)
         else:
-            log_debug(f"{caller} Calling POST {url} with {data}")
+            _LOGGER.debug(f"{caller} Calling POST {url} with {data}")
             response = self.session.post(url, data, timeout=REQUEST_TIMEOUT)
         self.session.headers["x-xsrf-token"] = urllib.parse.unquote(
             self.session.cookies.get("XSRF-TOKEN"), encoding="utf-8", errors="replace"
         )
 
-        log_debug(
+        _LOGGER.debug(
             f"{caller} http status code = {response.status_code} (expecting {expected})"
         )
         if log:
-            log_debug(f"{caller} response:\n{response.text}")
+            _LOGGER.debug(f"{caller} response:\n{response.text}")
         if expected is not None and response.status_code != expected:
             if response.status_code == 404:
                 self.request_error = response.json()
@@ -85,7 +87,7 @@ class MIWAClient:
                 raise MIWAServiceException(
                     f"[{caller}] Expecting HTTP {expected} | response HTTP {response.status_code}, response: {response.text}, Url: {response.url}"
                 )
-            log_debug(
+            _LOGGER.debug(
                 f"[MIWAClient|request] Received a HTTP {response.status_code}, nothing to worry about! We give it another try :-)"
             )
             self.login()
@@ -101,7 +103,7 @@ class MIWAClient:
     def login(self) -> dict:
         """Start a new MIWA session with a user & password."""
 
-        log_debug("[MIWAClient|login|start]")
+        _LOGGER.debug("[MIWAClient|login|start]")
         """Login process"""
         if self.email is None or self.password is None:
             return False
@@ -140,6 +142,21 @@ class MIWAClient:
             200,
             parse=True,
         )
+        if "emptyings" not in response:
+            return False
+        return response
+
+    def ondergrondse_ledigingen(self, address_path):
+        """Get ondergrondse ledigingen."""
+        response = self.request(
+            f"{self.environment.api_endpoint}/{address_path}/mijn-verbruik/ondergrondse-ledigingen?fromDate=01%2F01%2F2010",
+            f"[MIWAClient|{address_path}|ledigingen]",
+            None,
+            200,
+            parse=True,
+        )
+        if "dumpings" not in response:
+            return False
         return response
 
     def mijn_aanrekeningen(self, address_path):
@@ -231,7 +248,7 @@ class MIWAClient:
         )
 
         for address in self.mijn_adressen():
-            log_debug(
+            _LOGGER.debug(
                 f"Adres: {address.get('street_name')} {address.get('house_number')}, {address.get('zipcode')} {address.get('city')}"
             )
             address_id = address.get("id")
@@ -253,50 +270,88 @@ class MIWAClient:
             )
             address_path = "mijn-adressen/" + address_id
             ledigingen = self.ledigingen(address_path)
-            log_debug(
-                f"Huidige balans: {ledigingen.get('linkedAddress').get('current_balance')} EUR"
-            )
-            key = format_entity_name(f"{address_id} huidige balans")
-            data[key] = MIWAItem(
-                name="Huidige balans",
-                key=key,
-                type="euro",
-                device_key=device_key,
-                device_name=device_name,
-                device_model=device_model,
-                state=ledigingen.get("linkedAddress").get("current_balance"),
-            )
-            key = format_entity_name(f"{address_id} totaal ledigingen gewicht")
-            data[key] = MIWAItem(
-                name="Totaal gewicht ledigingen",
-                key=key,
-                type="gewicht",
-                device_key=device_key,
-                device_name=device_name,
-                device_model=device_model,
-                state=ledigingen.get("totalWeightOfEmptyings") / 1000,
-            )
-            log_debug(
-                f"Ledigingen van {ledigingen.get('fromDate')} tot heden ({ledigingen.get('totalWeightOfEmptyings')/1000} kg)"
-            )
-
-            for emptying in ledigingen.get("emptyings"):
-                key = format_entity_name(
-                    f"{address_id} lediging {emptying.get('emptied_on')}"
+            if ledigingen:
+                _LOGGER.debug(
+                    f"Huidige balans: {ledigingen.get('linkedAddress').get('current_balance')} EUR"
                 )
+                key = format_entity_name(f"{address_id} huidige balans ledigingen")
                 data[key] = MIWAItem(
-                    name=f"Lediging {emptying.get('emptied_on')[0:10]} {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L",
+                    name="Huidige balans",
+                    key=key,
+                    type="euro",
+                    device_key=device_key,
+                    device_name=device_name,
+                    device_model=device_model,
+                    state=ledigingen.get("linkedAddress").get("current_balance") / 100,
+                )
+                key = format_entity_name(f"{address_id} totaal ledigingen gewicht")
+                data[key] = MIWAItem(
+                    name="Totaal gewicht ledigingen",
                     key=key,
                     type="gewicht",
                     device_key=device_key,
                     device_name=device_name,
                     device_model=device_model,
-                    state=emptying.get("weight") / 1000,
-                    extra_attributes=emptying,
+                    state=ledigingen.get("totalWeightOfEmptyings") / 1000,
                 )
-                log_debug(
-                    f"  - {emptying.get('emptied_on')}, {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L: {emptying.get('weight')/1000} kg"
+                _LOGGER.debug(
+                    f"Ledigingen van {ledigingen.get('fromDate')} tot heden ({ledigingen.get('totalWeightOfEmptyings')/1000} kg)"
                 )
+
+                for emptying in ledigingen.get("emptyings"):
+                    key = format_entity_name(
+                        f"{address_id} lediging {emptying.get('emptied_on')}"
+                    )
+                    data[key] = MIWAItem(
+                        name=f"Lediging {emptying.get('emptied_on')[0:10]} {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L",
+                        key=key,
+                        type="gewicht",
+                        device_key=device_key,
+                        device_name=device_name,
+                        device_model=device_model,
+                        state=emptying.get("weight") / 1000,
+                        extra_attributes=emptying,
+                    )
+                    _LOGGER.debug(
+                        f"  - {emptying.get('emptied_on')}, {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L: {emptying.get('weight')/1000} kg"
+                    )
+
+            dumpings = self.ondergrondse_ledigingen(address_path)
+            if dumpings:
+                _LOGGER.debug(
+                    f"Huidige balans: {dumpings.get('linkedAddress').get('current_balance')} EUR"
+                )
+                key = format_entity_name(
+                    f"{address_id} huidige balans ondergrondse ledigingen"
+                )
+                data[key] = MIWAItem(
+                    name="Huidige balans",
+                    key=key,
+                    type="euro",
+                    device_key=device_key,
+                    device_name=device_name,
+                    device_model=device_model,
+                    state=dumpings.get("linkedAddress").get("current_balance") / 100,
+                )
+
+                for dumping in dumpings.get("dumpings"):
+                    key = format_entity_name(
+                        f"{address_id} ondergrondse lediging {dumping.get('dumped_on')}"
+                    )
+                    data[key] = MIWAItem(
+                        name=f"Lediging {dumping.get('dumped_on')[0:10]} {dumping.get('fraction')} {dumping.get('location')}",
+                        key=key,
+                        type="dumping",
+                        device_key=device_key,
+                        device_name=device_name,
+                        device_model=device_model,
+                        state=dumping.get("price") / 100,
+                        extra_attributes=dumping,
+                    )
+                    _LOGGER.debug(
+                        f"  - {dumping.get('emptied_on')}, {dumping.get('fraction')} : {dumping.get('price')/100} EUR"
+                    )
+
             for invoice in self.mijn_aanrekeningen(address_path):
                 key = format_entity_name(
                     f"{address_id} aanrekening {invoice.get('invoiced_on')}"
@@ -311,12 +366,12 @@ class MIWAClient:
                     state=invoice.get("amount_invoiced") / 100,
                     extra_attributes=invoice,
                 )
-                log_debug(
+                _LOGGER.debug(
                     f"  - {invoice.get('invoiced_on')}: {invoice.get('amount_invoiced')/100} EUR [{invoice.get('status')}|{invoice.get('billing_method')}]"
                 )
             facturatie_instellingen = self.facturatie_instellingen(address_path)
-            log_debug("Verzend- en betaalmethoden:")
-            log_debug(f"  Methode: {facturatie_instellingen.get('deliveryMethod')}")
+            _LOGGER.debug("Verzend- en betaalmethoden:")
+            _LOGGER.debug(f"  Methode: {facturatie_instellingen.get('deliveryMethod')}")
             key = format_entity_name(f"{address_id} aanrekening methode")
             data[key] = MIWAItem(
                 name="Verzendmethode aanrekening",
@@ -328,9 +383,9 @@ class MIWAClient:
                 state=facturatie_instellingen.get("deliveryMethod"),
                 extra_attributes=facturatie_instellingen,
             )
-            log_debug("Producten:")
+            _LOGGER.debug("Producten:")
             for product in self.mijn_producten(address_path):
-                log_debug(
+                _LOGGER.debug(
                     f"  - {product.get('name')} [sinds {product.get('active_since')}]"
                 )
                 key = format_entity_name(f"{address_id} product {product.get('name')}")
