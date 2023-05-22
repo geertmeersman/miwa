@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import logging
 import urllib
+from datetime import datetime
 
 from bs4 import BeautifulSoup
 from requests import (
@@ -315,30 +316,37 @@ class MIWAClient:
                         device_name=device_name,
                         device_model=device_model,
                         state=(ledigingen.get("totalWeightOfEmptyings") / 1000),
-                        extra_attributes=ledigingen.get("emptyings"),
+                        extra_attributes={"Ledigingen": ledigingen.get("emptyings")},
                     )
                     _LOGGER.debug(
                         f"Ledigingen van {ledigingen.get('fromDate')} tot heden ({ledigingen.get('totalWeightOfEmptyings')/1000} kg)"
                     )
-                    """
-                    for emptying in ledigingen.get("emptyings"):
-                        key = format_entity_name(
-                            f"{address_id} lediging {emptying.get('emptied_on')}"
-                        )
-                        data[key] = MIWAItem(
-                            name=f"Lediging {emptying.get('emptied_on')[0:10]} {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L",
-                            key=key,
-                            type="gewicht",
-                            device_key=device_key,
-                            device_name=device_name,
-                            device_model=device_model,
-                            state=(emptying.get("weight") / 1000),
-                            extra_attributes=emptying,
-                        )
-                        _LOGGER.debug(
-                            f"  - {emptying.get('emptied_on')}, {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L: {emptying.get('weight')/1000} kg"
-                        )
-                    """
+                    if len(ledigingen.get("emptyings")):
+                        fractions = []
+                        for emptying in ledigingen.get("emptyings"):
+                            fraction = emptying.get("fraction")
+                            if fraction not in fractions:
+                                fractions.append(fraction)
+                                emptied = datetime.strptime(
+                                    emptying.get("emptied_on"), "%Y-%m-%dT%H:%M:%S.%fZ"
+                                )
+                                formatted_emptied = emptied.strftime("%d-%m")
+                                key = format_entity_name(
+                                    f"{address_id} laatste lediging {fraction}"
+                                )
+                                data[key] = MIWAItem(
+                                    name=f"{fraction} Laatste lediging {formatted_emptied}",
+                                    key=key,
+                                    type="gewicht",
+                                    device_key=device_key,
+                                    device_name=device_name,
+                                    device_model=device_model,
+                                    state=(emptying.get("weight") / 1000),
+                                    extra_attributes=emptying,
+                                )
+                                _LOGGER.debug(
+                                    f"  - {emptying.get('emptied_on')}, {fraction} {emptying.get('type')} {emptying.get('volume')}L: {emptying.get('weight')/1000} kg"
+                                )
 
             if self.scope.get("view_dumpings"):
                 dumpings = self.ondergrondse_ledigingen(address_path)
@@ -359,28 +367,34 @@ class MIWAClient:
                         state=(
                             dumpings.get("linkedAddress").get("current_balance") / 100
                         ),
-                        extra_attributes=dumpings.get("dumpings"),
+                        extra_attributes={"Ledigingen": dumpings.get("dumpings")},
                     )
-
-                    """
-                    for dumping in dumpings.get("dumpings"):
-                        key = format_entity_name(
-                            f"{address_id} ondergrondse lediging {dumping.get('dumped_on')}"
-                        )
-                        data[key] = MIWAItem(
-                            name=f"Lediging {dumping.get('dumped_on')[0:10]} {dumping.get('fraction')} {dumping.get('location')}",
-                            key=key,
-                            type="dumping",
-                            device_key=device_key,
-                            device_name=device_name,
-                            device_model=device_model,
-                            state=(dumping.get("price") / 100),
-                            extra_attributes=dumping,
-                        )
-                        _LOGGER.debug(
-                            f"  - {dumping.get('emptied_on')}, {dumping.get('fraction')} : {dumping.get('price')/100} EUR"
-                        )
-                    """
+                    if len(dumpings.get("dumpings")):
+                        fractions = []
+                        for dumping in dumpings.get("dumpings"):
+                            fraction = dumping.get("fraction")
+                            if fraction not in fractions:
+                                fractions.append(fraction)
+                                emptied = datetime.strptime(
+                                    dumping.get("dumped_on"), "%Y-%m-%dT%H:%M:%S.%fZ"
+                                )
+                                formatted_emptied = emptied.strftime("%d-%m")
+                                key = format_entity_name(
+                                    f"{address_id} laatste ondergrondse lediging {fraction}"
+                                )
+                                data[key] = MIWAItem(
+                                    name=f"{fraction} Laatste lediging {emptied}",
+                                    key=key,
+                                    type="dumping",
+                                    device_key=device_key,
+                                    device_name=device_name,
+                                    device_model=device_model,
+                                    state=(dumping.get("price") / 100),
+                                    extra_attributes=dumping,
+                                )
+                                _LOGGER.debug(
+                                    f"  - {dumping.get('emptied_on')}, {fraction} : {dumping.get('price')/100} EUR"
+                                )
 
             if self.scope.get("view_payments"):
                 amount = 0
@@ -396,7 +410,7 @@ class MIWAClient:
                     device_name=device_name,
                     device_model=device_model,
                     state=(amount / 100),
-                    extra_attributes=payments,
+                    extra_attributes={"Betalingen": payments},
                 )
 
             if self.scope.get("view_invoices"):
