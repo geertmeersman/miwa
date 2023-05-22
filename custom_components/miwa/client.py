@@ -43,6 +43,7 @@ class MIWAClient:
         self.password = password
         self.environment = environment
         self.session.headers = headers
+        self.scope = None
         self.request_error = {}
 
     def request(
@@ -120,6 +121,7 @@ class MIWAClient:
             200,
             parse=True,
         )
+        self.scope = response.get("auth").get("can")
         return response.get("auth").get("user")
 
     def mijn_adressen(self):
@@ -183,6 +185,19 @@ class MIWAClient:
         )
         return response
 
+    def mijn_saldo(self, address_path):
+        """Get payments."""
+        response = self.request(
+            f"{self.environment.api_endpoint}/{address_path}/mijn-saldo",
+            f"[MIWAClient|{address_path}|mijn_saldo]",
+            None,
+            200,
+            parse=True,
+        )
+        if "payments" in response:
+            return response.get("payments")
+        return False
+
     def mijn_producten(self, address_path):
         """Get aanrekeningen."""
         response = self.request(
@@ -241,7 +256,7 @@ class MIWAClient:
         data[key] = MIWAItem(
             name="Telefoon- of gsm-nummer",
             key=key,
-            type="info",
+            type="telefoon",
             device_key=device_key,
             device_name=device_name,
             device_model=device_model,
@@ -254,6 +269,8 @@ class MIWAClient:
                 f"Adres: {address.get('street_name')} {address.get('house_number')}, {address.get('zipcode')} {address.get('city')}"
             )
             address_id = address.get("id")
+            address_path = "mijn-adressen/" + address_id
+
             device_key = format_entity_name(f"address_id {address_id}")
             device_name = (
                 f"Adres {address.get('street_name')} {address.get('house_number')}"
@@ -270,140 +287,173 @@ class MIWAClient:
                 state=address.get("inhabitant_category"),
                 extra_attributes=address,
             )
-            address_path = "mijn-adressen/" + address_id
-            ledigingen = self.ledigingen(address_path)
-            if ledigingen:
-                _LOGGER.debug(
-                    f"Huidige balans: {ledigingen.get('linkedAddress').get('current_balance')} EUR"
-                )
-                key = format_entity_name(f"{address_id} huidige balans ledigingen")
-                data[key] = MIWAItem(
-                    name="Huidige balans",
-                    key=key,
-                    type="euro",
-                    device_key=device_key,
-                    device_name=device_name,
-                    device_model=device_model,
-                    state=ledigingen.get("linkedAddress").get("current_balance") / 100,
-                )
-                key = format_entity_name(f"{address_id} totaal ledigingen gewicht")
-                data[key] = MIWAItem(
-                    name="Totaal gewicht ledigingen",
-                    key=key,
-                    type="gewicht",
-                    device_key=device_key,
-                    device_name=device_name,
-                    device_model=device_model,
-                    state=ledigingen.get("totalWeightOfEmptyings") / 1000,
-                )
-                _LOGGER.debug(
-                    f"Ledigingen van {ledigingen.get('fromDate')} tot heden ({ledigingen.get('totalWeightOfEmptyings')/1000} kg)"
-                )
-
-                for emptying in ledigingen.get("emptyings"):
-                    key = format_entity_name(
-                        f"{address_id} lediging {emptying.get('emptied_on')}"
-                    )
-                    data[key] = MIWAItem(
-                        name=f"Lediging {emptying.get('emptied_on')[0:10]} {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L",
-                        key=key,
-                        type="gewicht",
-                        device_key=device_key,
-                        device_name=device_name,
-                        device_model=device_model,
-                        state=emptying.get("weight") / 1000,
-                        extra_attributes=emptying,
-                    )
+            _LOGGER.debug(f"SCOPE {self.scope}")
+            if self.scope.get("view_emptyings"):
+                ledigingen = self.ledigingen(address_path)
+                if ledigingen:
                     _LOGGER.debug(
-                        f"  - {emptying.get('emptied_on')}, {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L: {emptying.get('weight')/1000} kg"
+                        f"Huidige balans: {ledigingen.get('linkedAddress').get('current_balance')} EUR"
                     )
-
-            dumpings = self.ondergrondse_ledigingen(address_path)
-            if dumpings:
-                _LOGGER.debug(
-                    f"Huidige balans: {dumpings.get('linkedAddress').get('current_balance')} EUR"
-                )
-                key = format_entity_name(
-                    f"{address_id} huidige balans ondergrondse ledigingen"
-                )
-                data[key] = MIWAItem(
-                    name="Huidige balans",
-                    key=key,
-                    type="euro",
-                    device_key=device_key,
-                    device_name=device_name,
-                    device_model=device_model,
-                    state=dumpings.get("linkedAddress").get("current_balance") / 100,
-                )
-
-                for dumping in dumpings.get("dumpings"):
-                    key = format_entity_name(
-                        f"{address_id} ondergrondse lediging {dumping.get('dumped_on')}"
-                    )
+                    key = format_entity_name(f"{address_id} huidige balans ledigingen")
                     data[key] = MIWAItem(
-                        name=f"Lediging {dumping.get('dumped_on')[0:10]} {dumping.get('fraction')} {dumping.get('location')}",
-                        key=key,
-                        type="dumping",
-                        device_key=device_key,
-                        device_name=device_name,
-                        device_model=device_model,
-                        state=dumping.get("price") / 100,
-                        extra_attributes=dumping,
-                    )
-                    _LOGGER.debug(
-                        f"  - {dumping.get('emptied_on')}, {dumping.get('fraction')} : {dumping.get('price')/100} EUR"
-                    )
-
-            invoices = self.mijn_aanrekeningen(address_path)
-            if invoices:
-                for invoice in invoices:
-                    key = format_entity_name(
-                        f"{address_id} aanrekening {invoice.get('invoiced_on')}"
-                    )
-                    data[key] = MIWAItem(
-                        name=f"Aanrekening {invoice.get('invoiced_on')[0:10]}",
+                        name="Huidige balans",
                         key=key,
                         type="euro",
                         device_key=device_key,
                         device_name=device_name,
                         device_model=device_model,
-                        state=invoice.get("amount_invoiced") / 100,
-                        extra_attributes=invoice,
+                        state=ledigingen.get("linkedAddress").get("current_balance")
+                        / 100,
+                    )
+                    key = format_entity_name(f"{address_id} totaal ledigingen gewicht")
+                    data[key] = MIWAItem(
+                        name="Totaal gewicht ledigingen",
+                        key=key,
+                        type="gewicht",
+                        device_key=device_key,
+                        device_name=device_name,
+                        device_model=device_model,
+                        state=ledigingen.get("totalWeightOfEmptyings") / 1000,
+                        extra_attributes=ledigingen,
                     )
                     _LOGGER.debug(
-                        f"  - {invoice.get('invoiced_on')}: {invoice.get('amount_invoiced')/100} EUR [{invoice.get('status')}|{invoice.get('billing_method')}]"
+                        f"Ledigingen van {ledigingen.get('fromDate')} tot heden ({ledigingen.get('totalWeightOfEmptyings')/1000} kg)"
                     )
-            facturatie_instellingen = self.facturatie_instellingen(address_path)
-            if facturatie_instellingen and "deliveryMethod" in facturatie_instellingen:
-                _LOGGER.debug("Verzend- en betaalmethoden:")
-                _LOGGER.debug(
-                    f"  Methode: {facturatie_instellingen.get('deliveryMethod')}"
-                )
-                key = format_entity_name(f"{address_id} aanrekening methode")
+                    """
+                    for emptying in ledigingen.get("emptyings"):
+                        key = format_entity_name(
+                            f"{address_id} lediging {emptying.get('emptied_on')}"
+                        )
+                        data[key] = MIWAItem(
+                            name=f"Lediging {emptying.get('emptied_on')[0:10]} {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L",
+                            key=key,
+                            type="gewicht",
+                            device_key=device_key,
+                            device_name=device_name,
+                            device_model=device_model,
+                            state=emptying.get("weight") / 1000,
+                            extra_attributes=emptying,
+                        )
+                        _LOGGER.debug(
+                            f"  - {emptying.get('emptied_on')}, {emptying.get('fraction')} {emptying.get('type')} {emptying.get('volume')}L: {emptying.get('weight')/1000} kg"
+                        )
+                    """
+
+            if self.scope.get("view_dumpings"):
+                dumpings = self.ondergrondse_ledigingen(address_path)
+                if dumpings:
+                    _LOGGER.debug(
+                        f"Huidige balans: {dumpings.get('linkedAddress').get('current_balance')} EUR"
+                    )
+                    key = format_entity_name(
+                        f"{address_id} huidige balans ondergrondse ledigingen"
+                    )
+                    data[key] = MIWAItem(
+                        name="Huidige balans",
+                        key=key,
+                        type="euro",
+                        device_key=device_key,
+                        device_name=device_name,
+                        device_model=device_model,
+                        state=dumpings.get("linkedAddress").get("current_balance")
+                        / 100,
+                        extra_attributes=dumpings,
+                    )
+
+                    """
+                    for dumping in dumpings.get("dumpings"):
+                        key = format_entity_name(
+                            f"{address_id} ondergrondse lediging {dumping.get('dumped_on')}"
+                        )
+                        data[key] = MIWAItem(
+                            name=f"Lediging {dumping.get('dumped_on')[0:10]} {dumping.get('fraction')} {dumping.get('location')}",
+                            key=key,
+                            type="dumping",
+                            device_key=device_key,
+                            device_name=device_name,
+                            device_model=device_model,
+                            state=dumping.get("price") / 100,
+                            extra_attributes=dumping,
+                        )
+                        _LOGGER.debug(
+                            f"  - {dumping.get('emptied_on')}, {dumping.get('fraction')} : {dumping.get('price')/100} EUR"
+                        )
+                    """
+
+            if self.scope.get("view_payments"):
+                amount = 0
+                payments = self.mijn_saldo(address_path)
+                for payment in payments:
+                    amount += payment.get("amount")
+                key = format_entity_name(f"{address_id} payments")
                 data[key] = MIWAItem(
-                    name="Verzendmethode aanrekening",
+                    name="Payments",
                     key=key,
-                    type="verzending",
+                    type="euro",
                     device_key=device_key,
                     device_name=device_name,
                     device_model=device_model,
-                    state=facturatie_instellingen.get("deliveryMethod"),
-                    extra_attributes=facturatie_instellingen,
+                    state=amount / 100,
+                    extra_attributes=payments,
                 )
+
+            if self.scope.get("view_invoices"):
+                invoices = self.mijn_aanrekeningen(address_path)
+                if invoices:
+                    for invoice in invoices:
+                        key = format_entity_name(
+                            f"{address_id} aanrekening {invoice.get('invoiced_on')}"
+                        )
+                        data[key] = MIWAItem(
+                            name=f"Aanrekening {invoice.get('invoiced_on')[0:10]}",
+                            key=key,
+                            type="euro",
+                            device_key=device_key,
+                            device_name=device_name,
+                            device_model=device_model,
+                            state=invoice.get("amount_invoiced") / 100,
+                            extra_attributes=invoice,
+                        )
+                        _LOGGER.debug(
+                            f"  - {invoice.get('invoiced_on')}: {invoice.get('amount_invoiced')/100} EUR [{invoice.get('status')}|{invoice.get('billing_method')}]"
+                        )
+                facturatie_instellingen = self.facturatie_instellingen(address_path)
+                if (
+                    facturatie_instellingen
+                    and "deliveryMethod" in facturatie_instellingen
+                ):
+                    _LOGGER.debug("Verzend- en betaalmethoden:")
+                    _LOGGER.debug(
+                        f"  Methode: {facturatie_instellingen.get('deliveryMethod')}"
+                    )
+                    key = format_entity_name(f"{address_id} aanrekening methode")
+                    data[key] = MIWAItem(
+                        name="Verzendmethode aanrekening",
+                        key=key,
+                        type="verzending",
+                        device_key=device_key,
+                        device_name=device_name,
+                        device_model=device_model,
+                        state=facturatie_instellingen.get("deliveryMethod"),
+                        extra_attributes=facturatie_instellingen,
+                    )
             _LOGGER.debug("Producten:")
-            for product in self.mijn_producten(address_path):
-                _LOGGER.debug(
-                    f"  - {product.get('name')} [sinds {product.get('active_since')}]"
-                )
-                key = format_entity_name(f"{address_id} product {product.get('name')}")
-                data[key] = MIWAItem(
-                    name=f"{product.get('name')}",
-                    key=key,
-                    type="product",
-                    device_key=device_key,
-                    device_name=device_name,
-                    device_model=device_model,
-                    state=product.get("status"),
-                    extra_attributes=product,
-                )
+            if self.scope.get("view_products"):
+                for product in self.mijn_producten(address_path):
+                    _LOGGER.debug(
+                        f"  - {product.get('name')} [sinds {product.get('active_since')}]"
+                    )
+                    key = format_entity_name(
+                        f"{address_id} product {product.get('name')}"
+                    )
+                    data[key] = MIWAItem(
+                        name=f"{product.get('name')}",
+                        key=key,
+                        type="product",
+                        device_key=device_key,
+                        device_name=device_name,
+                        device_model=device_model,
+                        state=product.get("status"),
+                        extra_attributes=product,
+                    )
         return data
