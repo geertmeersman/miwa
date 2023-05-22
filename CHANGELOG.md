@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.2.1](https://github.com/geertmeersman/miwa/tree/v0.2.1) (2023-05-22)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.0...v0.2.1)
+
+**Implemented enhancements:**
+
+- Extra attributes reduced output [\#19](https://github.com/geertmeersman/miwa/pull/19) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.2.0](https://github.com/geertmeersman/miwa/tree/v0.2.0) (2023-05-22)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.9...v0.2.0)
