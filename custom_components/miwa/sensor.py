@@ -32,6 +32,8 @@ class MIWASensorDescription(SensorEntityDescription):
 SENSOR_DESCRIPTIONS: list[SensorEntityDescription] = [
     MIWASensorDescription(key="address", icon="mdi:map-marker"),
     MIWASensorDescription(key="user", icon="mdi:face-man"),
+    MIWASensorDescription(key="email", icon="mdi:email"),
+    MIWASensorDescription(key="telefoon", icon="mdi:phone"),
     MIWASensorDescription(key="info", icon="mdi:information"),
     MIWASensorDescription(key="product", icon="mdi:trash-can"),
     MIWASensorDescription(key="verzending", icon="mdi:email-fast"),
