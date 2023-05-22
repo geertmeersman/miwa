@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.2.2](https://github.com/geertmeersman/miwa/tree/v0.2.2) (2023-05-22)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.1...v0.2.2)
+
+**Merged pull requests:**
+
+- Restored auto corrected double line for division [\#20](https://github.com/geertmeersman/miwa/pull/20) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.2.1](https://github.com/geertmeersman/miwa/tree/v0.2.1) (2023-05-22)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.0...v0.2.1)
