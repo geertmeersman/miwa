@@ -168,7 +168,9 @@ class MIWAClient:
             200,
             parse=True,
         )
-        return response.get("invoices")
+        if "invoice" in response:
+            return response.get("invoices")
+        return False
 
     def facturatie_instellingen(self, address_path):
         """Get facturatie instellingen."""
@@ -352,37 +354,42 @@ class MIWAClient:
                         f"  - {dumping.get('emptied_on')}, {dumping.get('fraction')} : {dumping.get('price')/100} EUR"
                     )
 
-            for invoice in self.mijn_aanrekeningen(address_path):
-                key = format_entity_name(
-                    f"{address_id} aanrekening {invoice.get('invoiced_on')}"
+            invoices = self.mijn_aanrekeningen(address_path)
+            if invoices:
+                for invoice in invoices:
+                    key = format_entity_name(
+                        f"{address_id} aanrekening {invoice.get('invoiced_on')}"
+                    )
+                    data[key] = MIWAItem(
+                        name=f"Aanrekening {invoice.get('invoiced_on')[0:10]}",
+                        key=key,
+                        type="euro",
+                        device_key=device_key,
+                        device_name=device_name,
+                        device_model=device_model,
+                        state=invoice.get("amount_invoiced") / 100,
+                        extra_attributes=invoice,
+                    )
+                    _LOGGER.debug(
+                        f"  - {invoice.get('invoiced_on')}: {invoice.get('amount_invoiced')/100} EUR [{invoice.get('status')}|{invoice.get('billing_method')}]"
+                    )
+            facturatie_instellingen = self.facturatie_instellingen(address_path)
+            if facturatie_instellingen and "deliveryMethod" in facturatie_instellingen:
+                _LOGGER.debug("Verzend- en betaalmethoden:")
+                _LOGGER.debug(
+                    f"  Methode: {facturatie_instellingen.get('deliveryMethod')}"
                 )
+                key = format_entity_name(f"{address_id} aanrekening methode")
                 data[key] = MIWAItem(
-                    name=f"Aanrekening {invoice.get('invoiced_on')[0:10]}",
+                    name="Verzendmethode aanrekening",
                     key=key,
-                    type="euro",
+                    type="verzending",
                     device_key=device_key,
                     device_name=device_name,
                     device_model=device_model,
-                    state=invoice.get("amount_invoiced") / 100,
-                    extra_attributes=invoice,
+                    state=facturatie_instellingen.get("deliveryMethod"),
+                    extra_attributes=facturatie_instellingen,
                 )
-                _LOGGER.debug(
-                    f"  - {invoice.get('invoiced_on')}: {invoice.get('amount_invoiced')/100} EUR [{invoice.get('status')}|{invoice.get('billing_method')}]"
-                )
-            facturatie_instellingen = self.facturatie_instellingen(address_path)
-            _LOGGER.debug("Verzend- en betaalmethoden:")
-            _LOGGER.debug(f"  Methode: {facturatie_instellingen.get('deliveryMethod')}")
-            key = format_entity_name(f"{address_id} aanrekening methode")
-            data[key] = MIWAItem(
-                name="Verzendmethode aanrekening",
-                key=key,
-                type="verzending",
-                device_key=device_key,
-                device_name=device_name,
-                device_model=device_model,
-                state=facturatie_instellingen.get("deliveryMethod"),
-                extra_attributes=facturatie_instellingen,
-            )
             _LOGGER.debug("Producten:")
             for product in self.mijn_producten(address_path):
                 _LOGGER.debug(
