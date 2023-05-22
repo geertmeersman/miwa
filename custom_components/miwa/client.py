@@ -314,7 +314,7 @@ class MIWAClient:
                         device_name=device_name,
                         device_model=device_model,
                         state=ledigingen.get("totalWeightOfEmptyings") / 1000,
-                        extra_attributes=ledigingen,
+                        extra_attributes=ledigingen.get("emptyings"),
                     )
                     _LOGGER.debug(
                         f"Ledigingen van {ledigingen.get('fromDate')} tot heden ({ledigingen.get('totalWeightOfEmptyings')/1000} kg)"
@@ -357,7 +357,7 @@ class MIWAClient:
                         device_model=device_model,
                         state=dumpings.get("linkedAddress").get("current_balance")
                         / 100,
-                        extra_attributes=dumpings,
+                        extra_attributes=dumpings.get("dumpings"),
                     )
 
                     """
