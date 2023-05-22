@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import logging
 import urllib
+from datetime import datetime
 
 from bs4 import BeautifulSoup
 from requests import (
@@ -326,11 +327,15 @@ class MIWAClient:
                             fraction = emptying.get("fraction")
                             if fraction not in fractions:
                                 fractions.append(fraction)
+                                emptied = datetime.strptime(
+                                    emptying.get("emptied_on"), "%Y-%m-%dT%H:%M:%S.%fZ"
+                                )
+                                formatted_emptied = emptied.strftime("%d-%m")
                                 key = format_entity_name(
                                     f"{address_id} laatste lediging {fraction}"
                                 )
                                 data[key] = MIWAItem(
-                                    name=f"{fraction} Laatste lediging {emptying.get('emptied_on')[0:10]}",
+                                    name=f"{fraction} Laatste lediging {formatted_emptied}",
                                     key=key,
                                     type="gewicht",
                                     device_key=device_key,
@@ -370,11 +375,15 @@ class MIWAClient:
                             fraction = dumping.get("fraction")
                             if fraction not in fractions:
                                 fractions.append(fraction)
+                                emptied = datetime.strptime(
+                                    dumping.get("dumped_on"), "%Y-%m-%dT%H:%M:%S.%fZ"
+                                )
+                                formatted_emptied = emptied.strftime("%d-%m")
                                 key = format_entity_name(
                                     f"{address_id} laatste ondergrondse lediging {fraction}"
                                 )
                                 data[key] = MIWAItem(
-                                    name=f"{fraction} Laatste ondergrondse lediging {dumping.get('dumped_on')[0:10]}",
+                                    name=f"{fraction} Laatste lediging {emptied}",
                                     key=key,
                                     type="dumping",
                                     device_key=device_key,
