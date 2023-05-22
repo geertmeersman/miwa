@@ -302,8 +302,9 @@ class MIWAClient:
                         device_key=device_key,
                         device_name=device_name,
                         device_model=device_model,
-                        state=ledigingen.get("linkedAddress").get("current_balance")
-                        / 100,
+                        state=(
+                            ledigingen.get("linkedAddress").get("current_balance") / 100
+                        ),
                     )
                     key = format_entity_name(f"{address_id} totaal ledigingen gewicht")
                     data[key] = MIWAItem(
@@ -313,7 +314,7 @@ class MIWAClient:
                         device_key=device_key,
                         device_name=device_name,
                         device_model=device_model,
-                        state=ledigingen.get("totalWeightOfEmptyings") / 1000,
+                        state=(ledigingen.get("totalWeightOfEmptyings") / 1000),
                         extra_attributes=ledigingen.get("emptyings"),
                     )
                     _LOGGER.debug(
@@ -331,7 +332,7 @@ class MIWAClient:
                             device_key=device_key,
                             device_name=device_name,
                             device_model=device_model,
-                            state=emptying.get("weight") / 1000,
+                            state=(emptying.get("weight") / 1000),
                             extra_attributes=emptying,
                         )
                         _LOGGER.debug(
@@ -355,8 +356,9 @@ class MIWAClient:
                         device_key=device_key,
                         device_name=device_name,
                         device_model=device_model,
-                        state=dumpings.get("linkedAddress").get("current_balance")
-                        / 100,
+                        state=(
+                            dumpings.get("linkedAddress").get("current_balance") / 100
+                        ),
                         extra_attributes=dumpings.get("dumpings"),
                     )
 
@@ -372,7 +374,7 @@ class MIWAClient:
                             device_key=device_key,
                             device_name=device_name,
                             device_model=device_model,
-                            state=dumping.get("price") / 100,
+                            state=(dumping.get("price") / 100),
                             extra_attributes=dumping,
                         )
                         _LOGGER.debug(
@@ -393,7 +395,7 @@ class MIWAClient:
                     device_key=device_key,
                     device_name=device_name,
                     device_model=device_model,
-                    state=amount / 100,
+                    state=(amount / 100),
                     extra_attributes=payments,
                 )
 
@@ -411,7 +413,7 @@ class MIWAClient:
                             device_key=device_key,
                             device_name=device_name,
                             device_model=device_model,
-                            state=invoice.get("amount_invoiced") / 100,
+                            state=(invoice.get("amount_invoiced") / 100),
                             extra_attributes=invoice,
                         )
                         _LOGGER.debug(
