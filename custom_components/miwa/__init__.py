@@ -1,24 +1,22 @@
 """MIWA integration."""
 from __future__ import annotations
 
+import logging
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_EMAIL
 from homeassistant.const import CONF_PASSWORD
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
-from homeassistant.helpers.update_coordinator import UpdateFailed
-from requests.exceptions import ConnectionError
 
 from .client import MIWAClient
-from .const import _LOGGER
 from .const import COORDINATOR_UPDATE_INTERVAL
 from .const import DOMAIN
 from .const import PLATFORMS
-from .exceptions import MIWAException
-from .exceptions import MIWAServiceException
 from .models import MIWAItem
-from .utils import log_debug
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -80,8 +78,9 @@ class MIWADataUpdateCoordinator(DataUpdateCoordinator):
 
     async def _async_update_data(self) -> dict | None:
         """Update data."""
-        try:
-            items = await self.hass.async_add_executor_job(self.client.fetch_data)
+        # try:
+        items = await self.hass.async_add_executor_job(self.client.fetch_data)
+        """
         except ConnectionError as exception:
             raise UpdateFailed(f"ConnectionError {exception}") from exception
         except MIWAServiceException as exception:
@@ -90,7 +89,7 @@ class MIWADataUpdateCoordinator(DataUpdateCoordinator):
             raise UpdateFailed(f"MIWAException {exception}") from exception
         except Exception as exception:
             raise UpdateFailed(f"Exception {exception}") from exception
-
+        """
         items: list[MIWAItem] = items
 
         current_items = {
@@ -100,9 +99,9 @@ class MIWADataUpdateCoordinator(DataUpdateCoordinator):
             )
         }
 
-        if len(items) > 0:
+        if items and len(items) > 0:
             fetched_items = {str(items[item].device_key) for item in items}
-            log_debug(
+            _LOGGER.debug(
                 f"[init|MIWADataUpdateCoordinator|_async_update_data|fetched_items] {fetched_items}"
             )
             if stale_items := current_items - fetched_items:
@@ -110,7 +109,7 @@ class MIWADataUpdateCoordinator(DataUpdateCoordinator):
                     if device := self._device_registry.async_get_device(
                         {(DOMAIN, device_key)}
                     ):
-                        log_debug(
+                        _LOGGER.debug(
                             f"[init|MIWADataUpdateCoordinator|_async_update_data|async_remove_device] {device_key}",
                             True,
                         )
@@ -121,10 +120,12 @@ class MIWADataUpdateCoordinator(DataUpdateCoordinator):
             if self.data and fetched_items - {
                 str(self.data[item].device_key) for item in self.data
             }:
-                # log_debug(f"[init|MIWADataUpdateCoordinator|_async_update_data|async_reload] {product.product_name}")
+                # _LOGGER.debug(f"[init|MIWADataUpdateCoordinator|_async_update_data|async_reload] {product.product_name}")
                 self.hass.async_create_task(
                     self.hass.config_entries.async_reload(self._config_entry_id)
                 )
                 return None
             return items
+        else:
+            _LOGGER.critical("AIAIAI")
         return []

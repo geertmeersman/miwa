@@ -1,6 +1,7 @@
 """Base MIWA entity."""
 from __future__ import annotations
 
+import logging
 from datetime import datetime
 
 from homeassistant.core import callback
@@ -16,8 +17,9 @@ from .const import NAME
 from .const import VERSION
 from .const import WEBSITE
 from .models import MIWAItem
-from .utils import log_debug
 from .utils import sensor_name
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class MIWAEntity(CoordinatorEntity[MIWADataUpdateCoordinator]):
@@ -53,7 +55,7 @@ class MIWAEntity(CoordinatorEntity[MIWADataUpdateCoordinator]):
         self.last_synced = datetime.now()
         self._attr_name = sensor_name(self.item.name)
         self._item = item
-        log_debug(f"[MIWAEntity|init] {self._key}")
+        _LOGGER.debug(f"[MIWAEntity|init] {self._key}")
 
     @callback
     def _handle_coordinator_update(self) -> None:
@@ -66,7 +68,7 @@ class MIWAEntity(CoordinatorEntity[MIWADataUpdateCoordinator]):
                     self._item = item
                     self.async_write_ha_state()
                     return
-        log_debug(
+        _LOGGER.debug(
             f"[MIWAEntity|_handle_coordinator_update] {self._attr_unique_id}: async_write_ha_state ignored since API fetch failed or not found",
             True,
         )

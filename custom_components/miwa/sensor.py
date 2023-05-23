@@ -1,6 +1,7 @@
 """MIWA sensor platform."""
 from __future__ import annotations
 
+import logging
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
@@ -19,7 +20,8 @@ from . import MIWADataUpdateCoordinator
 from .const import DOMAIN
 from .entity import MIWAEntity
 from .models import MIWAItem
-from .utils import log_debug
+
+_LOGGER = logging.getLogger(__name__)
 
 
 @dataclass
@@ -64,7 +66,7 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up the MIWA sensors."""
-    log_debug("[sensor|async_setup_entry|async_add_entities|start]")
+    _LOGGER.debug("[sensor|async_setup_entry|async_add_entities|start]")
     coordinator: MIWADataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
     entities: list[MIWASensor] = []
 
@@ -72,7 +74,7 @@ async def async_setup_entry(
         description.key: description for description in SENSOR_DESCRIPTIONS
     }
 
-    # log_debug(f"[sensor|async_setup_entry|async_add_entities|SUPPORTED_KEYS] {SUPPORTED_KEYS}")
+    # _LOGGER.debug(f"[sensor|async_setup_entry|async_add_entities|SUPPORTED_KEYS] {SUPPORTED_KEYS}")
 
     if coordinator.data is not None:
         for item in coordinator.data:
@@ -90,7 +92,7 @@ async def async_setup_entry(
                     icon=description.icon,
                 )
 
-                log_debug(f"[sensor|async_setup_entry|adding] {item.name}")
+                _LOGGER.debug(f"[sensor|async_setup_entry|adding] {item.name}")
                 entities.append(
                     MIWASensor(
                         coordinator=coordinator,
@@ -99,7 +101,7 @@ async def async_setup_entry(
                     )
                 )
             else:
-                log_debug(
+                _LOGGER.debug(
                     f"[sensor|async_setup_entry|no support type found] {item.name}, type: {item.type}, keys: {SUPPORTED_KEYS.get(item.type)}",
                     True,
                 )

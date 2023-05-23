@@ -1,6 +1,5 @@
 """Constants used by MIWA."""
 import json
-import logging
 from datetime import timedelta
 from pathlib import Path
 from typing import Final
@@ -8,10 +7,6 @@ from typing import Final
 from homeassistant.const import Platform
 
 from .models import MIWAEnvironment
-
-SHOW_DEBUG_AS_WARNING = False
-
-_LOGGER = logging.getLogger(__name__)
 
 PLATFORMS: Final = [Platform.SENSOR]
 
