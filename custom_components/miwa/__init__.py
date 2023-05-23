@@ -9,11 +9,15 @@ from homeassistant.const import CONF_PASSWORD
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import UpdateFailed
+from requests.exceptions import ConnectionError
 
 from .client import MIWAClient
 from .const import COORDINATOR_UPDATE_INTERVAL
 from .const import DOMAIN
 from .const import PLATFORMS
+from .exceptions import MIWAException
+from .exceptions import MIWAServiceException
 from .models import MIWAItem
 
 _LOGGER = logging.getLogger(__name__)
@@ -78,9 +82,8 @@ class MIWADataUpdateCoordinator(DataUpdateCoordinator):
 
     async def _async_update_data(self) -> dict | None:
         """Update data."""
-        # try:
-        items = await self.hass.async_add_executor_job(self.client.fetch_data)
-        """
+        try:
+            items = await self.hass.async_add_executor_job(self.client.fetch_data)
         except ConnectionError as exception:
             raise UpdateFailed(f"ConnectionError {exception}") from exception
         except MIWAServiceException as exception:
@@ -89,7 +92,6 @@ class MIWADataUpdateCoordinator(DataUpdateCoordinator):
             raise UpdateFailed(f"MIWAException {exception}") from exception
         except Exception as exception:
             raise UpdateFailed(f"Exception {exception}") from exception
-        """
         items: list[MIWAItem] = items
 
         current_items = {
