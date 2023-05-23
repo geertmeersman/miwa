@@ -80,31 +80,21 @@ class MIWAClient:
                 return False
             if response.status_code == 401:
                 raise BadCredentialsException(response.text)
-            if (
-                response.status_code != 403
-                and response.status_code != 500
-                and connection_retry_left > 0
-                and not retrying
-            ):
-                raise MIWAServiceException(
-                    f"[{caller}] Expecting HTTP {expected} | response HTTP {response.status_code}, response: {response.text}, Url: {response.url}"
-                )
-            _LOGGER.debug(
-                f"[MIWAClient|request] Received a HTTP {response.status_code}, nothing to worry about! We give it another try :-)"
-            )
-            self.login()
-            response = self.request(
-                url, caller, data, expected, parse, log, True, connection_retry_left - 1
+            raise MIWAServiceException(
+                f"[{caller}] Expecting HTTP {expected} | response HTTP {response.status_code}, response: {response.text}, Url: {response.url}"
             )
         if parse:
             soup = BeautifulSoup(response.text, "html.parser")
             tag = soup.find("div", {"id": "app"})
+            if tag is None:
+                raise MIWAServiceException("App ID not found on the login page")
             return json.loads(tag.get("data-page")).get("props")
         return response
 
     def login(self) -> dict:
         """Start a new MIWA session with a user & password."""
 
+        self.session = Session()
         _LOGGER.debug("[MIWAClient|login|start]")
         """Login process"""
         if self.email is None or self.password is None:
@@ -123,6 +113,8 @@ class MIWAClient:
             parse=True,
         )
         self.scope = response.get("auth").get("can")
+        _LOGGER.debug(self.scope)
+        _LOGGER.debug(response.get("auth"))
         return response.get("auth").get("user")
 
     def mijn_adressen(self):
@@ -214,7 +206,7 @@ class MIWAClient:
         """Fetch MIWA data."""
         data = {}
         user_info = self.login()
-        if not user_info:
+        if not user_info or "email" not in user_info or not self.scope:
             return False
         email = user_info.get("email")
         device_key = format_entity_name(f"user {email}")
@@ -288,7 +280,7 @@ class MIWAClient:
                 state=address.get("inhabitant_category"),
                 extra_attributes=address,
             )
-            _LOGGER.debug(f"SCOPE {self.scope}")
+
             if self.scope.get("view_emptyings"):
                 ledigingen = self.ledigingen(address_path)
                 if ledigingen:
