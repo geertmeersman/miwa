@@ -1,5 +1,24 @@
 # Changelog
 
+## [v0.2.3](https://github.com/geertmeersman/miwa/tree/v0.2.3) (2023-05-23)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.2...v0.2.3)
+
+**Implemented enhancements:**
+
+- Merge pull request \#21 from geertmeersman/dev-current [\#22](https://github.com/geertmeersman/miwa/pull/22) ([geertmeersman](https://github.com/geertmeersman))
+- Extra attributes fix & laatste lediging sensor [\#21](https://github.com/geertmeersman/miwa/pull/21) ([geertmeersman](https://github.com/geertmeersman))
+
+**Closed issues:**
+
+- Exception 'NoneType' object has no attribute 'get' [\#16](https://github.com/geertmeersman/miwa/issues/16)
+
+**Merged pull requests:**
+
+- Session fix [\#25](https://github.com/geertmeersman/miwa/pull/25) ([geertmeersman](https://github.com/geertmeersman))
+- Merge pull request \#22 from geertmeersman/main [\#24](https://github.com/geertmeersman/miwa/pull/24) ([geertmeersman](https://github.com/geertmeersman))
+- Ruff [\#23](https://github.com/geertmeersman/miwa/pull/23) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.2.2](https://github.com/geertmeersman/miwa/tree/v0.2.2) (2023-05-22)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.1...v0.2.2)
