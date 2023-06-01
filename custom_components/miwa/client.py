@@ -1,24 +1,22 @@
 """MIWA API Client."""
 from __future__ import annotations
 
+from datetime import datetime
 import json
 import logging
 import urllib
-from datetime import datetime
 
 from bs4 import BeautifulSoup
-from requests import (
-    Session,
-)
+from requests import Session
 
-from .const import BASE_HEADERS
-from .const import CONNECTION_RETRY
-from .const import DEFAULT_MIWA_ENVIRONMENT
-from .const import REQUEST_TIMEOUT
-from .exceptions import BadCredentialsException
-from .exceptions import MIWAServiceException
-from .models import MIWAEnvironment
-from .models import MIWAItem
+from .const import (
+    BASE_HEADERS,
+    CONNECTION_RETRY,
+    DEFAULT_MIWA_ENVIRONMENT,
+    REQUEST_TIMEOUT,
+)
+from .exceptions import BadCredentialsException, MIWAServiceException
+from .models import MIWAEnvironment, MIWAItem
 from .utils import format_entity_name
 
 _LOGGER = logging.getLogger(__name__)
@@ -308,7 +306,7 @@ class MIWAClient:
                         device_name=device_name,
                         device_model=device_model,
                         state=(ledigingen.get("totalWeightOfEmptyings") / 1000),
-                        extra_attributes={"Ledigingen": ledigingen.get("emptyings")},
+                        extra_attributes={"ledigingen": ledigingen.get("emptyings")},
                     )
                     _LOGGER.debug(
                         f"Ledigingen van {ledigingen.get('fromDate')} tot heden ({ledigingen.get('totalWeightOfEmptyings')/1000} kg)"
@@ -359,7 +357,7 @@ class MIWAClient:
                         state=(
                             dumpings.get("linkedAddress").get("current_balance") / 100
                         ),
-                        extra_attributes={"Ledigingen": dumpings.get("dumpings")},
+                        extra_attributes={"ledigingen": dumpings.get("dumpings")},
                     )
                     if len(dumpings.get("dumpings")):
                         fractions = []
@@ -402,7 +400,7 @@ class MIWAClient:
                     device_name=device_name,
                     device_model=device_model,
                     state=(amount / 100),
-                    extra_attributes={"Betalingen": payments},
+                    extra_attributes={"betalingen": payments},
                 )
 
             if self.scope.get("view_invoices"):
