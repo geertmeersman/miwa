@@ -1,6 +1,6 @@
 """Constants used by MIWA."""
-import json
 from datetime import timedelta
+import json
 from pathlib import Path
 from typing import Final
 
@@ -15,6 +15,22 @@ ATTRIBUTION: Final = "Data provided by MIWA"
 DEFAULT_MIWA_ENVIRONMENT = MIWAEnvironment(
     api_endpoint="https://mijnmiwa.be",
 )
+
+ATTRS_TO_IGNORE_RECORDER = {
+    "ledigingen",
+    "betalingen",
+    "auth",
+    "errors",
+    "flash",
+    "addresses",
+    "linkedAddress",
+    "recentlyAddedAddressId",
+    "hasMandates",
+    "deliveryMethod",
+    "email",
+    "invoiceAddress",
+    "invoiceSenderEmail",
+}
 
 BASE_HEADERS = {
     "x-requested-with": "XMLHttpRequest",
