@@ -1,13 +1,18 @@
 # Changelog
 
+## [v0.2.4](https://github.com/geertmeersman/miwa/tree/v0.2.4) (2023-06-01)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.3...v0.2.4)
+
+**Merged pull requests:**
+
+- fix: Ignore attributes in HA recorder [\#28](https://github.com/geertmeersman/miwa/pull/28) ([geertmeersman](https://github.com/geertmeersman))
+- Bump actions/setup-python from 4.6.0 to 4.6.1 [\#27](https://github.com/geertmeersman/miwa/pull/27) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ruff from 0.0.269 to 0.0.270 [\#26](https://github.com/geertmeersman/miwa/pull/26) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.2.3](https://github.com/geertmeersman/miwa/tree/v0.2.3) (2023-05-23)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.2...v0.2.3)
-
-**Implemented enhancements:**
-
-- Merge pull request \#21 from geertmeersman/dev-current [\#22](https://github.com/geertmeersman/miwa/pull/22) ([geertmeersman](https://github.com/geertmeersman))
-- Extra attributes fix & laatste lediging sensor [\#21](https://github.com/geertmeersman/miwa/pull/21) ([geertmeersman](https://github.com/geertmeersman))
 
 **Closed issues:**
 
@@ -18,6 +23,8 @@
 - Session fix [\#25](https://github.com/geertmeersman/miwa/pull/25) ([geertmeersman](https://github.com/geertmeersman))
 - Merge pull request \#22 from geertmeersman/main [\#24](https://github.com/geertmeersman/miwa/pull/24) ([geertmeersman](https://github.com/geertmeersman))
 - Ruff [\#23](https://github.com/geertmeersman/miwa/pull/23) ([geertmeersman](https://github.com/geertmeersman))
+- Merge pull request \#21 from geertmeersman/dev-current [\#22](https://github.com/geertmeersman/miwa/pull/22) ([geertmeersman](https://github.com/geertmeersman))
+- Extra attributes fix & laatste lediging sensor [\#21](https://github.com/geertmeersman/miwa/pull/21) ([geertmeersman](https://github.com/geertmeersman))
 
 ## [v0.2.2](https://github.com/geertmeersman/miwa/tree/v0.2.2) (2023-05-22)
 
@@ -31,7 +38,7 @@
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.0...v0.2.1)
 
-**Implemented enhancements:**
+**Merged pull requests:**
 
 - Extra attributes reduced output [\#19](https://github.com/geertmeersman/miwa/pull/19) ([geertmeersman](https://github.com/geertmeersman))
 
@@ -39,7 +46,7 @@
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.9...v0.2.0)
 
-**Implemented enhancements:**
+**Merged pull requests:**
 
 - Refactoring scopes and limited sensors for emptyings, references \#16 [\#18](https://github.com/geertmeersman/miwa/pull/18) ([geertmeersman](https://github.com/geertmeersman))
 
@@ -47,12 +54,9 @@
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.8...v0.1.9)
 
-**Implemented enhancements:**
-
-- Ondergrondse ledigingen, references \#16 [\#17](https://github.com/geertmeersman/miwa/pull/17) ([geertmeersman](https://github.com/geertmeersman))
-
 **Merged pull requests:**
 
+- Ondergrondse ledigingen, references \#16 [\#17](https://github.com/geertmeersman/miwa/pull/17) ([geertmeersman](https://github.com/geertmeersman))
 - Bump ruff from 0.0.267 to 0.0.269 [\#15](https://github.com/geertmeersman/miwa/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump danielchabr/pr-labels-checker from 3.2 to 3.3 [\#14](https://github.com/geertmeersman/miwa/pull/14) ([dependabot[bot]](https://github.com/apps/dependabot))
 
@@ -68,20 +72,13 @@
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.6...v0.1.7)
 
-**Implemented enhancements:**
+**Merged pull requests:**
 
 - Discord webhook [\#12](https://github.com/geertmeersman/miwa/pull/12) ([geertmeersman](https://github.com/geertmeersman))
 
 ## [v0.1.6](https://github.com/geertmeersman/miwa/tree/v0.1.6) (2023-05-16)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.5...v0.1.6)
-
-**Implemented enhancements:**
-
-- Discord webhook [\#11](https://github.com/geertmeersman/miwa/pull/11) ([geertmeersman](https://github.com/geertmeersman))
-- Dev current [\#8](https://github.com/geertmeersman/miwa/pull/8) ([geertmeersman](https://github.com/geertmeersman))
-- Prerelease [\#6](https://github.com/geertmeersman/miwa/pull/6) ([geertmeersman](https://github.com/geertmeersman))
-- Prerelease [\#5](https://github.com/geertmeersman/miwa/pull/5) ([geertmeersman](https://github.com/geertmeersman))
 
 **Documentation:**
 
@@ -90,8 +87,12 @@
 
 **Merged pull requests:**
 
+- Discord webhook [\#11](https://github.com/geertmeersman/miwa/pull/11) ([geertmeersman](https://github.com/geertmeersman))
 - Bump ruff from 0.0.265 to 0.0.267 [\#10](https://github.com/geertmeersman/miwa/pull/10) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump danielchabr/pr-labels-checker from 3.1 to 3.2 [\#9](https://github.com/geertmeersman/miwa/pull/9) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Dev current [\#8](https://github.com/geertmeersman/miwa/pull/8) ([geertmeersman](https://github.com/geertmeersman))
+- Prerelease [\#6](https://github.com/geertmeersman/miwa/pull/6) ([geertmeersman](https://github.com/geertmeersman))
+- Prerelease [\#5](https://github.com/geertmeersman/miwa/pull/5) ([geertmeersman](https://github.com/geertmeersman))
 
 ## [v0.1.5](https://github.com/geertmeersman/miwa/tree/v0.1.5) (2023-05-11)
 
@@ -109,7 +110,7 @@
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.1.1...v0.1.2)
 
-**Implemented enhancements:**
+**Merged pull requests:**
 
 - Ruff config, Debug off & delivery method sensor simplified [\#3](https://github.com/geertmeersman/miwa/pull/3) ([geertmeersman](https://github.com/geertmeersman))
 
