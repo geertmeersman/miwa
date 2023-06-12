@@ -19,7 +19,7 @@ jobs:
           ref: ${{ github.ref }}
 
       - id: semver-tag
-        uses: wakatime/semver-action@v1.5.1
+        uses: wakatime/semver-action@v1.6.0
         with:
           prefix: "v"
           prerelease_id: "rc"
