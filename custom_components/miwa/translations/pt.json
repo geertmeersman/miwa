@@ -26,12 +26,12 @@
         "title": "Reconfigurar MIWA",
         "data": {
           "email": "Endereço de email",
-          "password": "senha"
+          "password": "Senha"
         }
       },
       "password": {
         "title": "Atualizar a tua senha",
-        "description": "Para usar quando mudares a senha em  'Mijn MIWA'",
+        "description": "Para usar quando mudares a senha em 'Mijn MIWA'",
         "data": {
           "password": "senha"
         }
