@@ -33,14 +33,14 @@
         "title": "Atualizar a tua senha",
         "description": "Para usar quando mudares a senha em 'Mijn MIWA'",
         "data": {
-          "password": "senha"
+          "password": "Senha"
         }
       },
       "options_init": {
         "title": "Opcções de mudança",
         "menu_options": {
           "language": "Lingua",
-          "password": "senha"
+          "password": "Senha"
         }
       }
     },
