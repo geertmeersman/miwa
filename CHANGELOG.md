@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.3.0](https://github.com/geertmeersman/miwa/tree/v0.3.0) (2023-07-10)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.4...v0.3.0)
+
+**Merged pull requests:**
+
+- Create pt.json [\#35](https://github.com/geertmeersman/miwa/pull/35) ([ViPeR5000](https://github.com/ViPeR5000))
+- Bump ruff from 0.0.275 to 0.0.277 [\#34](https://github.com/geertmeersman/miwa/pull/34) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ruff from 0.0.272 to 0.0.275 [\#33](https://github.com/geertmeersman/miwa/pull/33) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Create FUNDING.yml [\#32](https://github.com/geertmeersman/miwa/pull/32) ([geertmeersman](https://github.com/geertmeersman))
+- Bump wakatime/semver-action from 1.5.1 to 1.6.0 [\#31](https://github.com/geertmeersman/miwa/pull/31) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ruff from 0.0.270 to 0.0.272 [\#30](https://github.com/geertmeersman/miwa/pull/30) ([dependabot[bot]](https://github.com/apps/dependabot))
+- fix: beta release [\#29](https://github.com/geertmeersman/miwa/pull/29) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.2.4](https://github.com/geertmeersman/miwa/tree/v0.2.4) (2023-06-01)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.3...v0.2.4)
