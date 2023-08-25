@@ -44,6 +44,21 @@ A Home Assistant integration to monitor Mijn MIWA consumption
 
 <!-- [END BADGES] -->
 
+## Table of contents
+
+- [MIWA for Home Assistant](#miwa-for-home-assistant)
+  - [Features](#features)
+  - [Table of contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Using HACS (recommended)](#using-hacs-recommended)
+    - [Manual](#manual)
+  - [Contributions are welcome!](#contributions-are-welcome)
+  - [Troubleshooting](#troubleshooting)
+    - [Enable debug logging](#enable-debug-logging)
+    - [Disable debug logging and download logs](#disable-debug-logging-and-download-logs)
+  - [Screenshots](#screenshots)
+  - [Code origin](#code-origin)
+
 ## Installation
 
 ### Using [HACS](https://hacs.xyz/) (recommended)
@@ -78,14 +93,17 @@ If you want to contribute to this please read the [Contribution guidelines](CONT
 
 ## Troubleshooting
 
-1. You can enable logging for this integration specifically and share your logs, so I can have a deep dive investigation. To enable logging, update your `configuration.yaml` like this, we can get more information in Configuration -> Logs page
+### Enable debug logging
 
-```
-logger:
-  default: warning
-  logs:
-    custom_components.miwa: debug
-```
+To enable debug logging, go to Settings -> Devices & Services and then click the triple dots for the Robonect integration and click Enable Debug Logging.
+
+![enable-debug-logging](https://raw.githubusercontent.com/geertmeersman/robonect/main/images/screenshots/enable-debug-logging.gif)
+
+### Disable debug logging and download logs
+
+Once you enable debug logging, you ideally need to make the error happen. Run your automation, change up your device or whatever was giving you an error and then come back and disable Debug Logging. Disabling debug logging is the same as enabling, but now you will see Disable Debug Logging. After you disable debug logging, it will automatically prompt you to download your log file. Please provide this logfile.
+
+![disable-debug-logging](https://raw.githubusercontent.com/geertmeersman/robonect/main/images/screenshots/disable-debug-logging.gif)
 
 ## Screenshots
 
