@@ -16,22 +16,6 @@ DEFAULT_MIWA_ENVIRONMENT = MIWAEnvironment(
     api_endpoint="https://mijnmiwa.be",
 )
 
-ATTRS_TO_IGNORE_RECORDER = {
-    "ledigingen",
-    "betalingen",
-    "auth",
-    "errors",
-    "flash",
-    "addresses",
-    "linkedAddress",
-    "recentlyAddedAddressId",
-    "hasMandates",
-    "deliveryMethod",
-    "email",
-    "invoiceAddress",
-    "invoiceSenderEmail",
-}
-
 BASE_HEADERS = {
     "x-requested-with": "XMLHttpRequest",
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
@@ -51,14 +35,12 @@ DOMAIN = manifest_data.get("domain")
 NAME = manifest_data.get("name")
 VERSION = manifest_data.get("version")
 ISSUEURL = manifest_data.get("issue_tracker")
-STARTUP = """
+STARTUP = f"""
 -------------------------------------------------------------------
-{name}
-Version: {version}
+{NAME}
+Version: {VERSION}
 This is a custom component
 If you have any issues with this you need to open an issue here:
-{issueurl}
+{ISSUEURL}
 -------------------------------------------------------------------
-""".format(
-    name=NAME, version=VERSION, issueurl=ISSUEURL
-)
+"""
