@@ -161,7 +161,7 @@ class MIWAClient:
             200,
             parse=True,
         )
-        if "invoice" in response:
+        if "invoices" in response:
             return response.get("invoices")
         return False
 
