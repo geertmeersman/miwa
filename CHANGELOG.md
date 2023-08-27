@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.4.0](https://github.com/geertmeersman/miwa/tree/v0.4.0) (2023-08-27)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.3.0...v0.4.0)
+
+**Merged pull requests:**
+
+- docs: TOC & debug info [\#45](https://github.com/geertmeersman/miwa/pull/45) ([geertmeersman](https://github.com/geertmeersman))
+- fix: api response changed  for invoices [\#44](https://github.com/geertmeersman/miwa/pull/44) ([geertmeersman](https://github.com/geertmeersman))
+- Bump ruff from 0.0.278 to 0.0.285 [\#43](https://github.com/geertmeersman/miwa/pull/43) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/setup-python from 4.6.1 to 4.7.0 [\#39](https://github.com/geertmeersman/miwa/pull/39) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ruff from 0.0.277 to 0.0.278 [\#38](https://github.com/geertmeersman/miwa/pull/38) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update pip requirement from \<23.2,\>=8.0.3 to \>=8.0.3,\<23.3 [\#37](https://github.com/geertmeersman/miwa/pull/37) ([dependabot[bot]](https://github.com/apps/dependabot))
+- refactor: workflow renaming & integration into hacs default [\#36](https://github.com/geertmeersman/miwa/pull/36) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.3.0](https://github.com/geertmeersman/miwa/tree/v0.3.0) (2023-07-10)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.2.4...v0.3.0)
