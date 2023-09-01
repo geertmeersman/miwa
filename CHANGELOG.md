@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.4.1](https://github.com/geertmeersman/miwa/tree/v0.4.1) (2023-09-01)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.4.0...v0.4.1)
+
+**Merged pull requests:**
+
+- fix: ATTRS\_TO\_IGNORE\_RECORDER [\#47](https://github.com/geertmeersman/miwa/pull/47) ([geertmeersman](https://github.com/geertmeersman))
+- Bump ruff from 0.0.285 to 0.0.286 [\#46](https://github.com/geertmeersman/miwa/pull/46) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.4.0](https://github.com/geertmeersman/miwa/tree/v0.4.0) (2023-08-27)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.3.0...v0.4.0)
