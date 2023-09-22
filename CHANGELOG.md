@@ -1,5 +1,16 @@
 # Changelog
 
+## [v0.4.2](https://github.com/geertmeersman/miwa/tree/v0.4.2) (2023-09-22)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.4.1...v0.4.2)
+
+**Merged pull requests:**
+
+- fix: Remove support for excluding attributes in recorder platforms. r… [\#52](https://github.com/geertmeersman/miwa/pull/52) ([geertmeersman](https://github.com/geertmeersman))
+- Bump ruff from 0.0.287 to 0.0.290 [\#50](https://github.com/geertmeersman/miwa/pull/50) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/checkout from 3 to 4 [\#49](https://github.com/geertmeersman/miwa/pull/49) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ruff from 0.0.286 to 0.0.287 [\#48](https://github.com/geertmeersman/miwa/pull/48) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.4.1](https://github.com/geertmeersman/miwa/tree/v0.4.1) (2023-09-01)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.4.0...v0.4.1)
