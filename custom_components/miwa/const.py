@@ -21,10 +21,6 @@ BASE_HEADERS = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
 }
 
-ATTRS_TO_IGNORE_RECORDER = {
-    "ledigingen",
-}
-
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S%z"
 COORDINATOR_UPDATE_INTERVAL = timedelta(minutes=15)
 CONNECTION_RETRY = 5
