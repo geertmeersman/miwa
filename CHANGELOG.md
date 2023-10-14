@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.4.3](https://github.com/geertmeersman/miwa/tree/v0.4.3) (2023-10-14)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.4.2...v0.4.3)
+
+**Closed issues:**
+
+- Update miwa to support the changed way in which attributes are excluded from recording [\#51](https://github.com/geertmeersman/miwa/issues/51)
+
+**Merged pull requests:**
+
+- Bump ruff from 0.0.291 to 0.0.292 [\#55](https://github.com/geertmeersman/miwa/pull/55) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/setup-python from 4.7.0 to 4.7.1 [\#54](https://github.com/geertmeersman/miwa/pull/54) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ruff from 0.0.290 to 0.0.291 [\#53](https://github.com/geertmeersman/miwa/pull/53) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.4.2](https://github.com/geertmeersman/miwa/tree/v0.4.2) (2023-09-22)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.4.1...v0.4.2)
