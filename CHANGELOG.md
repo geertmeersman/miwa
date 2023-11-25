@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.5.0](https://github.com/geertmeersman/miwa/tree/v0.5.0) (2023-11-25)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.4.3...v0.5.0)
+
+**Merged pull requests:**
+
+- Dev current [\#67](https://github.com/geertmeersman/miwa/pull/67) ([geertmeersman](https://github.com/geertmeersman))
+- fix: Release workflow - remove path from zip [\#63](https://github.com/geertmeersman/miwa/pull/63) ([geertmeersman](https://github.com/geertmeersman))
+- fix: Release workflow - add zip artifact [\#62](https://github.com/geertmeersman/miwa/pull/62) ([geertmeersman](https://github.com/geertmeersman))
+- build\(deps\): bump ruff from 0.1.4 to 0.1.5 [\#61](https://github.com/geertmeersman/miwa/pull/61) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump ruff from 0.1.3 to 0.1.4 [\#60](https://github.com/geertmeersman/miwa/pull/60) ([dependabot[bot]](https://github.com/apps/dependabot))
+- fix: Bump Python and HA [\#59](https://github.com/geertmeersman/miwa/pull/59) ([geertmeersman](https://github.com/geertmeersman))
+- Bump ruff from 0.0.292 to 0.1.3 [\#58](https://github.com/geertmeersman/miwa/pull/58) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update pip requirement from \<23.3,\>=8.0.3 to \>=8.0.3,\<23.4 [\#56](https://github.com/geertmeersman/miwa/pull/56) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.4.3](https://github.com/geertmeersman/miwa/tree/v0.4.3) (2023-10-14)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.4.2...v0.4.3)
