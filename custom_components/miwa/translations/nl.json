@@ -22,13 +22,6 @@
   },
   "options": {
     "step": {
-      "init": {
-        "title": "Herconfigureer MIWA",
-        "data": {
-          "email": "E-mailadres",
-          "password": "Wachtwoord"
-        }
-      },
       "password": {
         "title": "Pas je wachtwoord aan",
         "description": "Te doen wanneer je je account wachtwoord gewijzigd hebt op 'Mijn MIWA'",
@@ -36,7 +29,7 @@
           "password": "Wachtwoord"
         }
       },
-      "options_init": {
+      "init": {
         "title": "Opties wijzigen",
         "menu_options": {
           "password": "Wachtwoord"

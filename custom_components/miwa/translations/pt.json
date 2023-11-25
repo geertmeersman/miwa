@@ -22,13 +22,6 @@
   },
   "options": {
     "step": {
-      "init": {
-        "title": "Reconfigurar MIWA",
-        "data": {
-          "email": "Endereço de email",
-          "password": "Senha"
-        }
-      },
       "password": {
         "title": "Atualizar a tua senha",
         "description": "Para usar quando mudares a senha em 'Mijn MIWA'",
@@ -36,10 +29,9 @@
           "password": "Senha"
         }
       },
-      "options_init": {
+      "init": {
         "title": "Opcções de mudança",
         "menu_options": {
-          "language": "Lingua",
           "password": "Senha"
         }
       }
