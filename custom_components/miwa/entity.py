@@ -10,7 +10,7 @@ from homeassistant.helpers.entity import DeviceInfo, EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from . import MIWADataUpdateCoordinator
-from .const import ATTRIBUTION, DOMAIN, NAME, VERSION, WEBSITE
+from .const import ATTRIBUTION, DOMAIN, NAME, UNRECORDED_ATTRIBUTES, VERSION, WEBSITE
 from .models import MIWAItem
 from .utils import sensor_name
 
@@ -21,11 +21,7 @@ class MIWAEntity(CoordinatorEntity[MIWADataUpdateCoordinator]):
     """Base MIWA entity."""
 
     _attr_attribution = ATTRIBUTION
-    _unrecorded_attributes = frozenset(
-        {
-            "ledigingen",
-        }
-    )
+    _unrecorded_attributes = frozenset(UNRECORDED_ATTRIBUTES)
 
     def __init__(
         self,

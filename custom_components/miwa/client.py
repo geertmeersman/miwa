@@ -18,7 +18,7 @@ from .const import (
 )
 from .exceptions import BadCredentialsException, MIWAServiceException
 from .models import MIWAEnvironment, MIWAItem
-from .utils import format_entity_name
+from .utils import format_entity_name, mask_fields
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -63,8 +63,7 @@ class MIWAClient:
             response = self.session.get(url, timeout=REQUEST_TIMEOUT)
         else:
             data_copy = copy.deepcopy(data)
-            if "password" in data_copy:
-                data_copy["password"] = "***FILTERED***"
+            mask_fields(data_copy, ["password"])
             _LOGGER.debug(f"{caller} Calling POST {url} with {data_copy}")
             response = self.session.post(url, data, timeout=REQUEST_TIMEOUT)
         self.session.headers["x-xsrf-token"] = urllib.parse.unquote(
