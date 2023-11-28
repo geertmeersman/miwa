@@ -1,6 +1,7 @@
 """MIWA API Client."""
 from __future__ import annotations
 
+import copy
 from datetime import datetime
 import json
 import logging
@@ -61,7 +62,10 @@ class MIWAClient:
             _LOGGER.debug(f"{caller} Calling GET {url}")
             response = self.session.get(url, timeout=REQUEST_TIMEOUT)
         else:
-            _LOGGER.debug(f"{caller} Calling POST {url} with {data}")
+            data_copy = copy.deepcopy(data)
+            if "password" in data_copy:
+                data_copy["password"] = "***FILTERED***"
+            _LOGGER.debug(f"{caller} Calling POST {url} with {data_copy}")
             response = self.session.post(url, data, timeout=REQUEST_TIMEOUT)
         self.session.headers["x-xsrf-token"] = urllib.parse.unquote(
             self.session.cookies.get("XSRF-TOKEN"), encoding="utf-8", errors="replace"
