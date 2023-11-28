@@ -1,5 +1,16 @@
 # Changelog
 
+## [v0.5.1](https://github.com/geertmeersman/miwa/tree/v0.5.1) (2023-11-28)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.5.0...v0.5.1)
+
+**Merged pull requests:**
+
+- fix: filter out password when debugging [\#68](https://github.com/geertmeersman/miwa/pull/68) ([geertmeersman](https://github.com/geertmeersman))
+- build\(deps\): bump ruff from 0.1.5 to 0.1.6 [\#66](https://github.com/geertmeersman/miwa/pull/66) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump actions/upload-artifact from 2 to 3 [\#65](https://github.com/geertmeersman/miwa/pull/65) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump actions/github-script from 6 to 7 [\#64](https://github.com/geertmeersman/miwa/pull/64) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.5.0](https://github.com/geertmeersman/miwa/tree/v0.5.0) (2023-11-25)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.4.3...v0.5.0)
