@@ -55,7 +55,7 @@ jobs:
           publish: true
 
       - name: "✏️　Generate release changelog"
-        uses: heinrichreimer/github-changelog-generator-action@v2.3
+        uses: heinrichreimer/github-changelog-generator-action@v2.4
         with:
           token: ${{ secrets.GH_PAT }}
           issues: true
@@ -77,7 +77,7 @@ jobs:
           mv "${{ github.event.repository.name }}.zip" ../..
 
       - name: 📎 Upload zip file to release
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-artifact
           path: "${{ github.event.repository.name }}.zip"
