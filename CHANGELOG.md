@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.5.2](https://github.com/geertmeersman/miwa/tree/v0.5.2) (2023-11-28)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.5.1...v0.5.2)
+
+**Merged pull requests:**
+
+- fix: filter out sensitive fields in debug [\#69](https://github.com/geertmeersman/miwa/pull/69) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.5.1](https://github.com/geertmeersman/miwa/tree/v0.5.1) (2023-11-28)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.5.0...v0.5.1)
