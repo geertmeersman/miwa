@@ -1,5 +1,26 @@
 # Changelog
 
+## [v0.5.3](https://github.com/geertmeersman/miwa/tree/v0.5.3) (2023-12-21)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.5.2...v0.5.3)
+
+**Closed issues:**
+
+- Afvalkalender [\#75](https://github.com/geertmeersman/miwa/issues/75)
+
+**Merged pull requests:**
+
+- fix: jsonpath dependency [\#80](https://github.com/geertmeersman/miwa/pull/80) ([geertmeersman](https://github.com/geertmeersman))
+- fix: remove requirements [\#79](https://github.com/geertmeersman/miwa/pull/79) ([geertmeersman](https://github.com/geertmeersman))
+- build\(deps\): bump github/codeql-action from 2 to 3 [\#78](https://github.com/geertmeersman/miwa/pull/78) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump actions/upload-artifact from 3 to 4 [\#77](https://github.com/geertmeersman/miwa/pull/77) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump ruff from 0.1.7 to 0.1.8 [\#76](https://github.com/geertmeersman/miwa/pull/76) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump heinrichreimer/github-changelog-generator-action from 2.3 to 2.4 [\#74](https://github.com/geertmeersman/miwa/pull/74) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump actions/stale from 8 to 9 [\#73](https://github.com/geertmeersman/miwa/pull/73) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump actions/setup-python from 4.7.1 to 5.0.0 [\#72](https://github.com/geertmeersman/miwa/pull/72) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump ruff from 0.1.6 to 0.1.7 [\#71](https://github.com/geertmeersman/miwa/pull/71) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump colorlog from 6.7.0 to 6.8.0 [\#70](https://github.com/geertmeersman/miwa/pull/70) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.5.2](https://github.com/geertmeersman/miwa/tree/v0.5.2) (2023-11-28)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.5.1...v0.5.2)
