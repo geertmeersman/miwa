@@ -16,26 +16,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  set_condition:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Conditional Step
-        run: |
-          # Your commands here
-          echo "Running conditional job"
-
-          # Set an environment variable based on the secret
-          if [ -n "${{ secrets.DISCORD_WEBHOOK }}" ]; then
-            echo "DISCORD_WEBHOOK is set"
-            echo "::set-env name=DISCORD_WEBHOOK_FLAG::true" # Set an environment variable
-          else
-            echo "DISCORD_WEBHOOK is not set"
-            echo "::set-env name=DISCORD_WEBHOOK_FLAG::false" # Set an environment variable
-          fi
-
   hassfest: # https://developers.home-assistant.io/blog/2020/04/16/hassfest
     name: "Validate Hassfest"
-    if: ${{ env.DISCORD_WEBHOOK_FLAG == 'true' }}
+    if: ${{ vars.IGNORE_WORKFLOWS == 'true' }}
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout the repository"
@@ -46,7 +29,7 @@ jobs:
 
   hacs: # https://github.com/hacs/action
     name: "Validate HACS"
-    if: ${{ env.DISCORD_WEBHOOK_FLAG == 'true' }}
+    if: ${{ vars.IGNORE_WORKFLOWS == 'true' }}
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout the repository"
