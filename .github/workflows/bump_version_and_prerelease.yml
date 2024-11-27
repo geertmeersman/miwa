@@ -86,7 +86,7 @@ jobs:
 
       - name: 📝 Update release with zip file
         run: |
-          gh release upload ${{ steps.release_drafter.outputs.tag_name }} "${{ github.event.repository.name }}.zip"
+          gh release upload ${{ steps.release_published.outputs.tag_name }} "${{ github.event.repository.name }}.zip"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
