@@ -465,4 +465,5 @@ class MIWAClient:
                         state=product.get("status"),
                         extra_attributes=product,
                     )
+        _LOGGER.debug(f"Data returned in client.fetch_data: {data}")
         return data
