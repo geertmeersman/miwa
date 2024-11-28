@@ -73,7 +73,7 @@ class MIWAClient:
         _LOGGER.debug(
             f"{caller} http status code = {response.status_code} (expecting {expected})"
         )
-        if log or True:
+        if log:
             _LOGGER.debug(f"{caller} response:\n{response.text}")
         if expected is not None and response.status_code != expected:
             if response.status_code == 404:
@@ -89,7 +89,9 @@ class MIWAClient:
             tag = soup.find("div", {"id": "app"})
             if tag is None:
                 raise MIWAServiceException("App ID not found on the login page")
-            return json.loads(tag.get("data-page")).get("props")
+            data_props = json.loads(tag.get("data-page")).get("props")
+            _LOGGER.debug(f"Data page props: {data_props}")
+            return data_props
         return response
 
     def login(self) -> dict:
