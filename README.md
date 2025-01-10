@@ -76,7 +76,7 @@ A Home Assistant integration to monitor Mijn MIWA consumption
 
 ### Manual
 
-1. Copy the `custom_components/miwa` directory of this repository as `config/custom_components/miwa` in your Home Assistant instalation.
+1. Copy the `custom_components/miwa` directory of this repository as `config/custom_components/miwa` in your Home Assistant installation.
 2. Restart Home Assistant
 3. Add the 'MIWA' integration via HA Settings > 'Devices and Services' > 'Integrations'
 4. Provide your MIWA username and password

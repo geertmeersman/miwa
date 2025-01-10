@@ -1,4 +1,5 @@
 """MIWA API Client."""
+
 from __future__ import annotations
 
 import copy
@@ -262,14 +263,14 @@ class MIWAClient:
 
         for address in self.mijn_adressen():
             _LOGGER.debug(
-                f"Adres: {address.get('street_name')} {address.get('house_number')}, {address.get('zipcode')} {address.get('city')}"
+                f"Address: {address.get('street_name')} {address.get('house_number')}, {address.get('zipcode')} {address.get('city')}"
             )
             address_id = address.get("id")
             address_path = "mijn-adressen/" + address_id
 
             device_key = format_entity_name(f"address_id {address_id}")
             device_name = (
-                f"Adres {address.get('street_name')} {address.get('house_number')}"
+                f"Address {address.get('street_name')} {address.get('house_number')}"
             )
             device_model = "Adres"
             key = format_entity_name(f"{address_id} adres")
@@ -314,7 +315,7 @@ class MIWAClient:
                         extra_attributes={"ledigingen": ledigingen.get("emptyings")},
                     )
                     _LOGGER.debug(
-                        f"Ledigingen van {ledigingen.get('fromDate')} tot heden ({ledigingen.get('totalWeightOfEmptyings')/1000} kg)"
+                        f"Ledigingen van {ledigingen.get('fromDate')} tot heden ({ledigingen.get('totalWeightOfEmptyings') / 1000} kg)"
                     )
                     if len(ledigingen.get("emptyings")):
                         fractions = []
@@ -340,7 +341,7 @@ class MIWAClient:
                                     extra_attributes=emptying,
                                 )
                                 _LOGGER.debug(
-                                    f"  - {emptying.get('emptied_on')}, {fraction} {emptying.get('type')} {emptying.get('volume')}L: {emptying.get('weight')/1000} kg"
+                                    f"  - {emptying.get('emptied_on')}, {fraction} {emptying.get('type')} {emptying.get('volume')}L: {emptying.get('weight') / 1000} kg"
                                 )
 
             if self.scope.get("view_dumpings"):
@@ -388,7 +389,7 @@ class MIWAClient:
                                     extra_attributes=dumping,
                                 )
                                 _LOGGER.debug(
-                                    f"  - {dumping.get('emptied_on')}, {fraction} : {dumping.get('price')/100} EUR"
+                                    f"  - {dumping.get('emptied_on')}, {fraction} : {dumping.get('price') / 100} EUR"
                                 )
 
             if self.scope.get("view_payments"):
@@ -427,7 +428,7 @@ class MIWAClient:
                             extra_attributes=invoice,
                         )
                         _LOGGER.debug(
-                            f"  - {invoice.get('invoiced_on')}: {invoice.get('amount_invoiced')/100} EUR [{invoice.get('status')}|{invoice.get('billing_method')}]"
+                            f"  - {invoice.get('invoiced_on')}: {invoice.get('amount_invoiced') / 100} EUR [{invoice.get('status')}|{invoice.get('billing_method')}]"
                         )
                 facturatie_instellingen = self.facturatie_instellingen(address_path)
                 if (
