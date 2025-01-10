@@ -1,7 +1,9 @@
 {
+  "country": [
+    "BE"
+  ],
+  "filename": "miwa.zip",
   "name": "MIWA",
   "render_readme": true,
-  "country": ["BE"],
-  "zip_release": true,
-  "filename": "miwa.zip"
+  "zip_release": true
 }
