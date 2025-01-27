@@ -1,8 +1,26 @@
 # Changelog
 
+## [v0.7.0](https://github.com/geertmeersman/miwa/tree/v0.7.0) (2025-01-27)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.6.0...v0.7.0)
+
+**Merged pull requests:**
+
+- fix: credential check [\#159](https://github.com/geertmeersman/miwa/pull/159) ([geertmeersman](https://github.com/geertmeersman))
+- build\(deps\): bump ruff from 0.8.6 to 0.9.3 [\#157](https://github.com/geertmeersman/miwa/pull/157) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): update pip requirement from \<24.4,\>=8.0.3 to \>=8.0.3,\<25.1 [\#156](https://github.com/geertmeersman/miwa/pull/156) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore: github sync dev-current workflow [\#153](https://github.com/geertmeersman/miwa/pull/153) ([geertmeersman](https://github.com/geertmeersman))
+- chore: codespell [\#152](https://github.com/geertmeersman/miwa/pull/152) ([geertmeersman](https://github.com/geertmeersman))
+- build\(deps\): bump ruff from 0.8.4 to 0.8.6 [\#151](https://github.com/geertmeersman/miwa/pull/151) ([dependabot[bot]](https://github.com/apps/dependabot))
+- fix: pretty-format-json [\#150](https://github.com/geertmeersman/miwa/pull/150) ([geertmeersman](https://github.com/geertmeersman))
+- build\(deps\): bump ruff from 0.8.3 to 0.8.4 [\#149](https://github.com/geertmeersman/miwa/pull/149) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump ruff from 0.8.2 to 0.8.3 [\#148](https://github.com/geertmeersman/miwa/pull/148) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump ruff from 0.8.0 to 0.8.2 [\#147](https://github.com/geertmeersman/miwa/pull/147) ([dependabot[bot]](https://github.com/apps/dependabot))
+- fix: github workflow delete pre-releases on release [\#145](https://github.com/geertmeersman/miwa/pull/145) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.6.0](https://github.com/geertmeersman/miwa/tree/v0.6.0) (2024-11-28)
 
-[Full Changelog](https://github.com/geertmeersman/miwa/compare/v1.5.3-beta.115...v0.6.0)
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.5.3...v0.6.0)
 
 **Merged pull requests:**
 
@@ -14,25 +32,6 @@
 - build\(deps\): bump ruff from 0.7.2 to 0.7.3 [\#139](https://github.com/geertmeersman/miwa/pull/139) ([dependabot[bot]](https://github.com/apps/dependabot))
 - chore: zip\_release for hacs [\#138](https://github.com/geertmeersman/miwa/pull/138) ([geertmeersman](https://github.com/geertmeersman))
 - docs: release template [\#137](https://github.com/geertmeersman/miwa/pull/137) ([geertmeersman](https://github.com/geertmeersman))
-
-## [v1.5.3-beta.115](https://github.com/geertmeersman/miwa/tree/v1.5.3-beta.115) (2024-11-28)
-
-[Full Changelog](https://github.com/geertmeersman/miwa/compare/v1.5.3-beta.113...v1.5.3-beta.115)
-
-## [v1.5.3-beta.113](https://github.com/geertmeersman/miwa/tree/v1.5.3-beta.113) (2024-11-28)
-
-[Full Changelog](https://github.com/geertmeersman/miwa/compare/v1.5.3-beta.110...v1.5.3-beta.113)
-
-## [v1.5.3-beta.110](https://github.com/geertmeersman/miwa/tree/v1.5.3-beta.110) (2024-11-28)
-
-[Full Changelog](https://github.com/geertmeersman/miwa/compare/v1.5.3-beta.107...v1.5.3-beta.110)
-
-## [v1.5.3-beta.107](https://github.com/geertmeersman/miwa/tree/v1.5.3-beta.107) (2024-11-27)
-
-[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.5.3...v1.5.3-beta.107)
-
-**Merged pull requests:**
-
 - build\(deps\): bump colorlog from 6.8.2 to 6.9.0 [\#136](https://github.com/geertmeersman/miwa/pull/136) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps\): bump ruff from 0.7.1 to 0.7.2 [\#135](https://github.com/geertmeersman/miwa/pull/135) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps\): update pip requirement from \<24.3,\>=8.0.3 to \>=8.0.3,\<24.4 [\#134](https://github.com/geertmeersman/miwa/pull/134) ([dependabot[bot]](https://github.com/apps/dependabot))
