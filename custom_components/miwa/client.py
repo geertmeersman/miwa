@@ -116,6 +116,9 @@ class MIWAClient:
             200,
             parse=True,
         )
+        if not response["auth"]["loggedIn"] and response["flash"].get("error"):
+            raise BadCredentialsException(response["flash"].get("error"))
+        _LOGGER.critical(response)
         self.scope = response.get("auth").get("can")
         _LOGGER.debug(self.scope)
         _LOGGER.debug(response.get("auth"))
