@@ -1,49 +1,42 @@
 <img src="https://github.com/geertmeersman/miwa/raw/main/images/brand/logo.png"
-     alt="MIWA"
+     alt="MIWA Logo"
      align="right"
-     style="width: 200px;margin-right: 10px;" />
+     style="width: 200px; margin-right: 10px;" />
 
 # MIWA for Home Assistant
 
-A Home Assistant integration to monitor Mijn MIWA consumption
+A Home Assistant integration to monitor **Mijn MIWA** consumption.
 
-### Features
+Make sure you use the credentials from the website https://mijnmiwa.be/login
 
-- Emptying sensors
+## Features
+
+- 🗑️ Emptying sensors
 - 📈 Invoice sensors
-- 👱 User account information
+- 👤 User account information
 
 ---
 
-<!-- [START BADGES] -->
-<!-- Please keep comment here to allow auto update -->
 
-[![maintainer](https://img.shields.io/badge/maintainer-Geert%20Meersman-green?style=for-the-badge&logo=github)](https://github.com/geertmeersman)
-[![buyme_coffee](https://img.shields.io/badge/Buy%20me%20an%20Omer-donate-yellow?style=for-the-badge&logo=buymeacoffee)](https://www.buymeacoffee.com/geertmeersman)
-[![discord](https://img.shields.io/discord/1094198226493636638?style=for-the-badge&logo=discord)](https://discord.gg/BTW6S9m3)
+[![Maintainer](https://img.shields.io/badge/maintainer-Geert%20Meersman-green?style=for-the-badge&logo=github)](https://github.com/geertmeersman)
+[![Buy me an Omer](https://img.shields.io/badge/Buy%20me%20an%20Omer-donate-yellow?style=for-the-badge&logo=buymeacoffee)](https://www.buymeacoffee.com/geertmeersman)
+[![Discord](https://img.shields.io/discord/1094198226493636638?style=for-the-badge&logo=discord)](https://discord.gg/BTW6S9m3)
 
 [![MIT License](https://img.shields.io/github/license/geertmeersman/miwa?style=flat-square)](https://github.com/geertmeersman/miwa/blob/master/LICENSE)
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg?style=flat-square)](https://github.com/hacs/integration)
+[![HACS Default](https://img.shields.io/badge/HACS-Default-41BDF5.svg?style=flat-square)](https://github.com/hacs/integration)
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=geertmeersman&repository=miwa&category=integration)
 
-[![Open your Home Assistant instance and open the repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=geertmeersman&repository=miwa&category=integration)
-
-[![GitHub issues](https://img.shields.io/github/issues/geertmeersman/miwa)](https://github.com/geertmeersman/miwa/issues)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/geertmeersman/miwa.svg)](http://isitmaintained.com/project/geertmeersman/miwa)
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/geertmeersman/miwa.svg)](http://isitmaintained.com/project/geertmeersman/miwa)
+[![GitHub Issues](https://img.shields.io/github/issues/geertmeersman/miwa)](https://github.com/geertmeersman/miwa/issues)
+[![Resolve Time](http://isitmaintained.com/badge/resolution/geertmeersman/miwa.svg)](http://isitmaintained.com/project/geertmeersman/miwa)
+[![Open Issues](http://isitmaintained.com/badge/open/geertmeersman/miwa.svg)](http://isitmaintained.com/project/geertmeersman/miwa)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/geertmeersman/miwa/pulls)
 
-[![Hacs and Hassfest validation](https://github.com/geertmeersman/miwa/actions/workflows/validate.yml/badge.svg)](https://github.com/geertmeersman/miwa/actions/workflows/validate.yml)
+[![Validation Status](https://github.com/geertmeersman/miwa/actions/workflows/validate.yml/badge.svg)](https://github.com/geertmeersman/miwa/actions/workflows/validate.yml)
 [![Python](https://img.shields.io/badge/Python-FFD43B?logo=python)](https://github.com/geertmeersman/miwa/search?l=python)
+[![Latest Release](https://img.shields.io/github/v/release/geertmeersman/miwa?logo=github)](https://github.com/geertmeersman/miwa/releases)
+[![Last Commit](https://img.shields.io/github/last-commit/geertmeersman/miwa)](https://github.com/geertmeersman/miwa/commits)
 
-[![manifest version](https://img.shields.io/github/manifest-json/v/geertmeersman/miwa/master?filename=custom_components%2Fmiwa%2Fmanifest.json)](https://github.com/geertmeersman/miwa)
-[![github release](https://img.shields.io/github/v/release/geertmeersman/miwa?logo=github)](https://github.com/geertmeersman/miwa/releases)
-[![github release date](https://img.shields.io/github/release-date/geertmeersman/miwa)](https://github.com/geertmeersman/miwa/releases)
-[![github last-commit](https://img.shields.io/github/last-commit/geertmeersman/miwa)](https://github.com/geertmeersman/miwa/commits)
-[![github contributors](https://img.shields.io/github/contributors/geertmeersman/miwa)](https://github.com/geertmeersman/miwa/graphs/contributors)
-[![github commit activity](https://img.shields.io/github/commit-activity/y/geertmeersman/miwa?logo=github)](https://github.com/geertmeersman/miwa/commits/main)
-
-<!-- [END BADGES] -->
-
+---
 ## Table of contents
 
 - [MIWA for Home Assistant](#miwa-for-home-assistant)
@@ -58,57 +51,63 @@ A Home Assistant integration to monitor Mijn MIWA consumption
     - [Disable debug logging and download logs](#disable-debug-logging-and-download-logs)
   - [Screenshots](#screenshots)
   - [Code origin](#code-origin)
-
 ## Installation
 
-### Using [HACS](https://hacs.xyz/) (recommended)
+### Using [HACS](https://hacs.xyz/) (Recommended)
 
-**Click on this button:**
+**Click this button to install:**
 
-[![Open your Home Assistant instance and open the repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=geertmeersman&repository=miwa&category=integration)
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=geertmeersman&repository=miwa&category=integration)
 
-**or follow these steps:**
+Or follow these steps:
 
-1. Simply search for `MIWA` in HACS and install it easily.
-2. Restart Home Assistant
-3. Add the 'MIWA' integration via HA Settings > 'Devices and Services' > 'Integrations'
-4. Provide your MIWA username and password
+1. Open HACS and search for `MIWA`.
+2. Install the integration.
+3. Restart Home Assistant.
+4. Go to **Settings > Devices & Services > Integrations** and add `MIWA`.
+5. Enter your MIWA username and password.
 
-### Manual
+### Manual Installation
 
-1. Copy the `custom_components/miwa` directory of this repository as `config/custom_components/miwa` in your Home Assistant installation.
-2. Restart Home Assistant
-3. Add the 'MIWA' integration via HA Settings > 'Devices and Services' > 'Integrations'
-4. Provide your MIWA username and password
+1. Copy the `custom_components/miwa` directory to `config/custom_components/miwa` in your Home Assistant setup.
+2. Restart Home Assistant.
+3. Follow steps 4 and 5 from the HACS installation.
 
-This integration will set up the following platforms.
+#### Supported Platforms
 
-| Platform | Description                                   |
-| -------- | --------------------------------------------- |
+| Platform | Description |
+|----------|-------------|
 | `miwa`   | Home Assistant component for MIWA BE services |
 
-## Contributions are welcome!
+---
 
-If you want to contribute to this please read the [Contribution guidelines](CONTRIBUTING.md)
+## Contributions
+
+Contributions are welcome! Please read the [Contribution Guidelines](CONTRIBUTING.md) before submitting a PR.
+
+---
 
 ## Troubleshooting
 
-### Enable debug logging
+### Enable Debug Logging
 
-To enable debug logging, go to Settings -> Devices & Services and then click the triple dots for the Robonect integration and click Enable Debug Logging.
+1. Go to **Settings > Devices & Services**.
+2. Click the three dots for the MIWA integration.
+3. Select **Enable Debug Logging**.
 
-![enable-debug-logging](https://raw.githubusercontent.com/geertmeersman/robonect/main/images/screenshots/enable-debug-logging.gif)
+![Enable Debug Logging](https://raw.githubusercontent.com/geertmeersman/robonect/main/images/screenshots/enable-debug-logging.gif)
 
-### Disable debug logging and download logs
+### Disable Debug Logging & Download Logs
 
-Once you enable debug logging, you ideally need to make the error happen. Run your automation, change up your device or whatever was giving you an error and then come back and disable Debug Logging. Disabling debug logging is the same as enabling, but now you will see Disable Debug Logging. After you disable debug logging, it will automatically prompt you to download your log file. Please provide this logfile.
+1. Follow the same steps as enabling, but select **Disable Debug Logging**.
+2. You will be prompted to download the log file. Please provide this when reporting issues.
 
-![disable-debug-logging](https://raw.githubusercontent.com/geertmeersman/robonect/main/images/screenshots/disable-debug-logging.gif)
+![Disable Debug Logging](https://raw.githubusercontent.com/geertmeersman/robonect/main/images/screenshots/disable-debug-logging.gif)
 
-## Screenshots
+---
 
-## Code origin
+## Code Origin
 
-The code of this Home Assistant integration has been written by analysing the calls made by the MIWA website. Goal is to automate as much as possible and to monitor usage.
+This integration was developed by analyzing network requests made by the MIWA website. The goal is to automate and monitor MIWA usage efficiently.
 
-I have no link with MIWA
+🚨 **Disclaimer:** This project is not affiliated with MIWA.
