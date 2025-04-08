@@ -10,6 +10,7 @@ import urllib
 
 from bs4 import BeautifulSoup
 from requests import Session
+import urllib3
 
 from .const import (
     BASE_HEADERS,
@@ -22,6 +23,8 @@ from .models import MIWAEnvironment, MIWAItem
 from .utils import format_entity_name, mask_fields
 
 _LOGGER = logging.getLogger(__name__)
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class MIWAClient:
@@ -43,9 +46,11 @@ class MIWAClient:
         self.email = email
         self.password = password
         self.environment = environment
-        self.session.headers = headers
+        if headers:
+            self.session.headers.update(headers)
         self.scope = None
         self.request_error = {}
+        self.verify = False
 
     def request(
         self,
@@ -61,12 +66,16 @@ class MIWAClient:
         """Send a request to MIWA."""
         if data is None:
             _LOGGER.debug(f"{caller} Calling GET {url}")
-            response = self.session.get(url, timeout=REQUEST_TIMEOUT)
+            response = self.session.get(
+                url, timeout=REQUEST_TIMEOUT, verify=self.verify
+            )
         else:
             data_copy = copy.deepcopy(data)
             mask_fields(data_copy, ["password"])
             _LOGGER.debug(f"{caller} Calling POST {url} with {data_copy}")
-            response = self.session.post(url, data, timeout=REQUEST_TIMEOUT)
+            response = self.session.post(
+                url, data, timeout=REQUEST_TIMEOUT, verify=self.verify
+            )
         self.session.headers["x-xsrf-token"] = urllib.parse.unquote(
             self.session.cookies.get("XSRF-TOKEN"), encoding="utf-8", errors="replace"
         )
