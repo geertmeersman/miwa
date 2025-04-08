@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.8.0](https://github.com/geertmeersman/miwa/tree/v0.8.0) (2025-04-08)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.7.0...v0.8.0)
+
+**Merged pull requests:**
+
+- fix: temporary bypass SSL certificate validation, until they fix it [\#170](https://github.com/geertmeersman/miwa/pull/170) ([geertmeersman](https://github.com/geertmeersman))
+- build\(deps\): bump ruff from 0.9.9 to 0.11.4 [\#169](https://github.com/geertmeersman/miwa/pull/169) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump ruff from 0.9.7 to 0.9.9 [\#165](https://github.com/geertmeersman/miwa/pull/165) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump ruff from 0.9.3 to 0.9.7 [\#164](https://github.com/geertmeersman/miwa/pull/164) ([dependabot[bot]](https://github.com/apps/dependabot))
+- docs: readme [\#160](https://github.com/geertmeersman/miwa/pull/160) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v0.7.0](https://github.com/geertmeersman/miwa/tree/v0.7.0) (2025-01-27)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.6.0...v0.7.0)
