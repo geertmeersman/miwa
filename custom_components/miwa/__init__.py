@@ -31,7 +31,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     dev_reg = dr.async_get(hass)
     hass.data[DOMAIN][entry.entry_id] = coordinator = MIWADataUpdateCoordinator(
         hass,
-        config_entry_id=entry.entry_id,
+        config_entry=entry,
         dev_reg=dev_reg,
         client=client,
     )
@@ -60,7 +60,7 @@ class MIWADataUpdateCoordinator(DataUpdateCoordinator):
     def __init__(
         self,
         hass: HomeAssistant,
-        config_entry_id: str,
+        config_entry: ConfigEntry,
         dev_reg: dr.DeviceRegistry,
         client: MIWAClient,
     ) -> None:
@@ -70,8 +70,9 @@ class MIWADataUpdateCoordinator(DataUpdateCoordinator):
             _LOGGER,
             name=DOMAIN,
             update_interval=COORDINATOR_UPDATE_INTERVAL,
+            config_entry=config_entry,
         )
-        self._config_entry_id = config_entry_id
+        self._config_entry_id = config_entry.entry_id
         self._device_registry = dev_reg
         self.client = client
         self.hass = hass
