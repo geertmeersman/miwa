@@ -1,5 +1,32 @@
 # Changelog
 
+## [v1.0.0](https://github.com/geertmeersman/miwa/tree/v1.0.0) (2025-08-06)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.8.0...v1.0.0)
+
+**Closed issues:**
+
+- deprecated [\#172](https://github.com/geertmeersman/miwa/issues/172)
+
+**Merged pull requests:**
+
+- chore: Pass config\_entry explicitly to DataUpdateCoordinator to avoid C… [\#193](https://github.com/geertmeersman/miwa/pull/193) ([geertmeersman](https://github.com/geertmeersman))
+- chore\(deps\): bump ruff from 0.12.5 to 0.12.7 [\#192](https://github.com/geertmeersman/miwa/pull/192) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): update pip requirement from \<25.2,\>=8.0.3 to \>=8.0.3,\<25.3 [\#191](https://github.com/geertmeersman/miwa/pull/191) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump hugo19941994/delete-draft-releases from 1.0.1 to 2.0.0 [\#190](https://github.com/geertmeersman/miwa/pull/190) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.12.4 to 0.12.5 [\#189](https://github.com/geertmeersman/miwa/pull/189) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.12.3 to 0.12.4 [\#188](https://github.com/geertmeersman/miwa/pull/188) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.12.2 to 0.12.3 [\#187](https://github.com/geertmeersman/miwa/pull/187) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.12.1 to 0.12.2 [\#186](https://github.com/geertmeersman/miwa/pull/186) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.12.0 to 0.12.1 [\#185](https://github.com/geertmeersman/miwa/pull/185) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.11.13 to 0.12.0 [\#184](https://github.com/geertmeersman/miwa/pull/184) ([dependabot[bot]](https://github.com/apps/dependabot))
+- fix: reduce to 1 commit when releasing [\#183](https://github.com/geertmeersman/miwa/pull/183) ([geertmeersman](https://github.com/geertmeersman))
+- fix: sync dev-current workflow trigger [\#182](https://github.com/geertmeersman/miwa/pull/182) ([geertmeersman](https://github.com/geertmeersman))
+- chore\(deps\): bump ruff from 0.11.12 to 0.11.13 [\#181](https://github.com/geertmeersman/miwa/pull/181) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump ruff from 0.11.5 to 0.11.12 [\#180](https://github.com/geertmeersman/miwa/pull/180) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): update pip requirement from \<25.1,\>=8.0.3 to \>=8.0.3,\<25.2 [\#174](https://github.com/geertmeersman/miwa/pull/174) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps\): bump ruff from 0.11.4 to 0.11.5 [\#171](https://github.com/geertmeersman/miwa/pull/171) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.8.0](https://github.com/geertmeersman/miwa/tree/v0.8.0) (2025-04-08)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.7.0...v0.8.0)
