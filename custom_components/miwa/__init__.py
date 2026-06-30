@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import logging
+import re
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 from requests.exceptions import ConnectionError
 
@@ -17,6 +18,56 @@ from .exceptions import MIWAException, MIWAServiceException
 from .models import MIWAItem
 
 _LOGGER = logging.getLogger(__name__)
+
+
+async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
+    """Migrate old config entries."""
+    _LOGGER.info("Migrating MIWA integration from version %s", config_entry.version)
+
+    # If version is None or 1, treat as version 1
+    if config_entry.version is None or config_entry.version < 2:
+        # Migration from version 1 to 2: Remove old individual aanrekening sensors
+        _LOGGER.info("Starting migration: Removing old individual aanrekening sensors")
+
+        entity_registry = er.async_get(hass)
+
+        # Pattern to match old aanrekening sensors: sensor.miwa_*_aanrekening_*
+        # But exclude the new ones: sensor.miwa_*_aanrekeningen and sensor.miwa_*_laatste_aanrekening
+        old_sensor_pattern = re.compile(r"^sensor\.miwa_.*_aanrekening_\d{8}t\d{12}z$")
+
+        entities_to_remove = []
+
+        # Find all MIWA entities
+        for entity_id, entry in entity_registry.entities.items():
+            if entry.platform == DOMAIN and entity_id.startswith("sensor.miwa_"):
+                _LOGGER.debug(f"Found: {entity_id}")
+                # Check if this is an old individual aanrekening sensor
+                if old_sensor_pattern.match(entity_id):
+                    entities_to_remove.append(entity_id)
+                    _LOGGER.info(f"Found old aanrekening sensor to remove: {entity_id}")
+
+        # Remove the old entities
+        for entity_id in entities_to_remove:
+            try:
+                entity_registry.async_remove(entity_id)
+                _LOGGER.info(f"Successfully removed old sensor: {entity_id}")
+            except Exception as e:
+                _LOGGER.error(f"Failed to remove sensor {entity_id}: {e}")
+
+        if entities_to_remove:
+            _LOGGER.info(
+                f"Migration completed: Removed {len(entities_to_remove)} old aanrekening sensors"
+            )
+        else:
+            _LOGGER.info(
+                "Migration completed: No old aanrekening sensors found to remove"
+            )
+
+        # Update version to 2
+        hass.config_entries.async_update_entry(config_entry, version=2)
+        _LOGGER.info("Migration to version 2 completed")
+
+    return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

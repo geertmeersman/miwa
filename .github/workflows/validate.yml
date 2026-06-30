@@ -5,6 +5,7 @@ on:
   schedule:
     - cron: "0 0 * * *"
   push:
+    branches: ["main"]
     paths:
       - "custom_components/**"
   pull_request:
@@ -12,13 +13,12 @@ on:
       - "custom_components/**"
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   hassfest: # https://developers.home-assistant.io/blog/2020/04/16/hassfest
     name: "Validate Hassfest"
-    if: ${{ vars.IGNORE_WORKFLOWS == null }}
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout the repository"
@@ -29,7 +29,6 @@ jobs:
 
   hacs: # https://github.com/hacs/action
     name: "Validate HACS"
-    if: ${{ vars.IGNORE_WORKFLOWS == null }}
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout the repository"

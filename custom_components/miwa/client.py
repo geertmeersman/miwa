@@ -424,22 +424,79 @@ class MIWAClient:
             if self.scope.get("view_invoices"):
                 invoices = self.mijn_aanrekeningen(address_path)
                 if invoices:
-                    for invoice in invoices:
-                        key = format_entity_name(
-                            f"{address_id} aanrekening {invoice.get('invoiced_on')}"
+                    total_amount = 0
+                    aanrekeningen_data = []
+                    laatste_aanrekening = None
+
+                    sorted_invoices = sorted(
+                        invoices, key=lambda x: x.get("invoiced_on", ""), reverse=True
+                    )
+
+                    for invoice in sorted_invoices:
+                        amount = invoice.get("amount_invoiced", 0) / 100
+                        total_amount += amount
+
+                        if laatste_aanrekening is None:
+                            laatste_aanrekening = invoice
+
+                        aanrekeningen_data.append(
+                            {
+                                "datum": invoice.get("invoiced_on"),
+                                "bedrag": amount,
+                                "status": invoice.get("status"),
+                                "betaalmethode": invoice.get("billing_method"),
+                                "factuurnummer": invoice.get("invoice_number"),
+                                "omschrijving": invoice.get("description"),
+                                "vervaldatum": invoice.get("due_date"),
+                                "originele_data": invoice,
+                            }
                         )
+
+                        _LOGGER.debug(
+                            f"  - {invoice.get('invoiced_on')}: {amount} EUR [{invoice.get('status')}|{invoice.get('billing_method')}]"
+                        )
+
+                    key = format_entity_name(f"{address_id} aanrekeningen")
+                    data[key] = MIWAItem(
+                        name="Aanrekeningen",
+                        key=key,
+                        type="euro",
+                        device_key=device_key,
+                        device_name=device_name,
+                        device_model=device_model,
+                        state=total_amount,
+                        extra_attributes={"aanrekeningen": aanrekeningen_data},
+                    )
+
+                    if laatste_aanrekening:
+                        laatste_amount = (
+                            laatste_aanrekening.get("amount_invoiced", 0) / 100
+                        )
+                        laatste_datum = laatste_aanrekening.get("invoiced_on", "")
+
+                        key = format_entity_name(f"{address_id} laatste aanrekening")
                         data[key] = MIWAItem(
-                            name=f"Aanrekening {invoice.get('invoiced_on')[0:10]}",
+                            name="Laatste aanrekening",
                             key=key,
                             type="euro",
                             device_key=device_key,
                             device_name=device_name,
                             device_model=device_model,
-                            state=(invoice.get("amount_invoiced") / 100),
-                            extra_attributes=invoice,
-                        )
-                        _LOGGER.debug(
-                            f"  - {invoice.get('invoiced_on')}: {invoice.get('amount_invoiced') / 100} EUR [{invoice.get('status')}|{invoice.get('billing_method')}]"
+                            state=laatste_amount,
+                            extra_attributes={
+                                "datum": laatste_datum,
+                                "bedrag": laatste_amount,
+                                "status": laatste_aanrekening.get("status"),
+                                "betaalmethode": laatste_aanrekening.get(
+                                    "billing_method"
+                                ),
+                                "factuurnummer": laatste_aanrekening.get(
+                                    "invoice_number"
+                                ),
+                                "omschrijving": laatste_aanrekening.get("description"),
+                                "vervaldatum": laatste_aanrekening.get("due_date"),
+                                "volledige_data": laatste_aanrekening,
+                            },
                         )
                 facturatie_instellingen = self.facturatie_instellingen(address_path)
                 if (
