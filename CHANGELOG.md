@@ -1,5 +1,40 @@
 # Changelog
 
+## [v1.1.0](https://github.com/geertmeersman/miwa/tree/v1.1.0) (2026-06-30)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v1.0.0...v1.1.0)
+
+**Merged pull requests:**
+
+- feat: Added a consolidated invoice summary and a latest-invoice view for easier at-a-glance tracking [\#223](https://github.com/geertmeersman/miwa/pull/223) ([geertmeersman](https://github.com/geertmeersman))
+- chore\(deps\): bump actions/checkout from 6 to 7 [\#222](https://github.com/geertmeersman/miwa/pull/222) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/dependency-review-action from 4 to 5 [\#221](https://github.com/geertmeersman/miwa/pull/221) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/github-script from 8 to 9 [\#220](https://github.com/geertmeersman/miwa/pull/220) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump hugo19941994/delete-draft-releases from 2.0.0 to 3.0.0 [\#219](https://github.com/geertmeersman/miwa/pull/219) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump EndBug/add-and-commit from 9 to 10 [\#218](https://github.com/geertmeersman/miwa/pull/218) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump release-drafter/release-drafter from 6 to 7 [\#217](https://github.com/geertmeersman/miwa/pull/217) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/upload-artifact from 6 to 7 [\#216](https://github.com/geertmeersman/miwa/pull/216) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/upload-artifact from 5 to 6 [\#215](https://github.com/geertmeersman/miwa/pull/215) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/checkout from 5 to 6 [\#214](https://github.com/geertmeersman/miwa/pull/214) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/upload-artifact from 4 to 5 [\#213](https://github.com/geertmeersman/miwa/pull/213) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore: archived ruff-actions replaced [\#212](https://github.com/geertmeersman/miwa/pull/212) ([geertmeersman](https://github.com/geertmeersman))
+- chore\(release\): improved release workflow [\#211](https://github.com/geertmeersman/miwa/pull/211) ([geertmeersman](https://github.com/geertmeersman))
+- chore\(deps\): bump ruff from 0.14.0 to 0.14.1 [\#209](https://github.com/geertmeersman/miwa/pull/209) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump colorlog from 6.9.0 to 6.10.1 [\#208](https://github.com/geertmeersman/miwa/pull/208) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump github/codeql-action from 3 to 4 [\#206](https://github.com/geertmeersman/miwa/pull/206) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.13.3 to 0.14.0 [\#205](https://github.com/geertmeersman/miwa/pull/205) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.13.2 to 0.13.3 [\#204](https://github.com/geertmeersman/miwa/pull/204) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.13.1 to 0.13.2 [\#203](https://github.com/geertmeersman/miwa/pull/203) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.13.0 to 0.13.1 [\#202](https://github.com/geertmeersman/miwa/pull/202) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.12.12 to 0.13.0 [\#201](https://github.com/geertmeersman/miwa/pull/201) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/setup-python from 5 to 6 [\#200](https://github.com/geertmeersman/miwa/pull/200) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/github-script from 7 to 8 [\#199](https://github.com/geertmeersman/miwa/pull/199) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/stale from 9 to 10 [\#198](https://github.com/geertmeersman/miwa/pull/198) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.12.10 to 0.12.12 [\#197](https://github.com/geertmeersman/miwa/pull/197) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/checkout from 4 to 5 [\#196](https://github.com/geertmeersman/miwa/pull/196) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.12.8 to 0.12.10 [\#195](https://github.com/geertmeersman/miwa/pull/195) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump ruff from 0.12.7 to 0.12.8 [\#194](https://github.com/geertmeersman/miwa/pull/194) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v1.0.0](https://github.com/geertmeersman/miwa/tree/v1.0.0) (2025-08-06)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v0.8.0...v1.0.0)
