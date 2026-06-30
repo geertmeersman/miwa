@@ -19,6 +19,7 @@ DEFAULT_MIWA_ENVIRONMENT = MIWAEnvironment(
 
 UNRECORDED_ATTRIBUTES = {
     "ledigingen",
+    "aanrekeningen",
 }
 
 BASE_HEADERS = {

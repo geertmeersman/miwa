@@ -81,6 +81,12 @@ Or follow these steps:
 
 ---
 
+## Lovelace Examples
+
+Looking for dashboard card examples? Check out the [Lovelace Examples](MIWA_Lovelace_Invoices_Examples.md) for ready-to-use card configurations.
+
+---
+
 ## Contributions
 
 Contributions are welcome! Please read the [Contribution Guidelines](CONTRIBUTING.md) before submitting a PR.
