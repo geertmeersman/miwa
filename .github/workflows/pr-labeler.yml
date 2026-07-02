@@ -15,10 +15,10 @@ jobs:
               uses: actions/github-script@v9
               with:
                   script: |
-                      // Labeling op basis van Conventional Commits (https://www.conventionalcommits.org)
-                      // - major: 'BREAKING CHANGE:' footer of '!' suffix op eender welk type (bv. feat!: of fix!:)
-                      // - minor: 'feat:' of 'feat(scope):'
-                      // - patch: fix/perf/refactor/revert/build/ci/chore/docs/style/test met optionele scope
+                      // Labeling based on Conventional Commits (https://www.conventionalcommits.org)
+                      // - major: 'BREAKING CHANGE:' footer or '!' suffix on any type (e.g. feat!: or fix!:)
+                      // - minor: 'feat:' or 'feat(scope):'
+                      // - patch: fix/perf/refactor/revert/build/ci/chore/docs/style/test with optional scope
                       const { data: commits } = await github.rest.pulls.listCommits({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
@@ -43,7 +43,7 @@ jobs:
                         });
                       }
 
-                      // Check of we nu een label hebben
+                      // Check if we now have a label
                       const { data: pr } = await github.rest.pulls.get({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
@@ -52,5 +52,5 @@ jobs:
 
                       const hasSemVer = pr.labels.some(l => ['major', 'minor', 'patch'].includes(l.name));
                       if (!hasSemVer && labelsToAdd.length === 0) {
-                        core.setFailed('Geen SemVer label gevonden! Voeg een feat, fix of breaking change toe aan je commits.');
+                        core.setFailed('No SemVer label found! Add a feat, fix or breaking change to your commits.');
                       }
