@@ -1,5 +1,30 @@
 # Changelog
 
+## [v1.1.1](https://github.com/geertmeersman/miwa/tree/v1.1.1) (2026-10-23)
+
+[Full Changelog](https://github.com/geertmeersman/miwa/compare/v1.1.0...v1.1.1)
+
+**Merged pull requests:**
+
+- fix: let release-drafter determine version via semver-increment, remove semver-action [\#242](https://github.com/geertmeersman/miwa/pull/242) ([geertmeersman](https://github.com/geertmeersman))
+- fix: add Release prefix to release name template [\#241](https://github.com/geertmeersman/miwa/pull/241) ([geertmeersman](https://github.com/geertmeersman))
+- fix: migrate release-drafter to new format, remove deprecated version-resolver [\#240](https://github.com/geertmeersman/miwa/pull/240) ([geertmeersman](https://github.com/geertmeersman))
+- fix: add semver-increment patch to Maintenance and Documentation categories [\#239](https://github.com/geertmeersman/miwa/pull/239) ([geertmeersman](https://github.com/geertmeersman))
+- chore: only trigger release drafter on custom\_components changes [\#237](https://github.com/geertmeersman/miwa/pull/237) ([geertmeersman](https://github.com/geertmeersman))
+- chore: update release drafter template, remove beta release and dev-current workflows [\#236](https://github.com/geertmeersman/miwa/pull/236) ([geertmeersman](https://github.com/geertmeersman))
+- feat: add workflow to auto-label PRs without custom\_components changes as skip-changelog [\#235](https://github.com/geertmeersman/miwa/pull/235) ([geertmeersman](https://github.com/geertmeersman))
+- docs: add downloads \(latest release\) badge to README [\#234](https://github.com/geertmeersman/miwa/pull/234) ([geertmeersman](https://github.com/geertmeersman))
+- chore: add local brand assets [\#233](https://github.com/geertmeersman/miwa/pull/233) ([geertmeersman](https://github.com/geertmeersman))
+- chore: add semver fallback for missing tags in release workflows [\#232](https://github.com/geertmeersman/miwa/pull/232) ([geertmeersman](https://github.com/geertmeersman))
+- chore\(deps\): bump EndBug/add-and-commit from 10 to 11 [\#231](https://github.com/geertmeersman/miwa/pull/231) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/stale from 10 to 11 [\#230](https://github.com/geertmeersman/miwa/pull/230) ([dependabot[bot]](https://github.com/apps/dependabot))
+- refactor: update funding configuration, enhance bug report template, … [\#229](https://github.com/geertmeersman/miwa/pull/229) ([geertmeersman](https://github.com/geertmeersman))
+- refactor: remove obsolete workflows and enhance permissions in validation jobs [\#228](https://github.com/geertmeersman/miwa/pull/228) ([geertmeersman](https://github.com/geertmeersman))
+- refactor: streamline beta release workflow and enhance versioning pro… [\#227](https://github.com/geertmeersman/miwa/pull/227) ([geertmeersman](https://github.com/geertmeersman))
+- refactor: restructure release drafter configuration for improved clarity and functionality [\#226](https://github.com/geertmeersman/miwa/pull/226) ([geertmeersman](https://github.com/geertmeersman))
+- refactor: update comments in PR labeler script for clarity and consistency [\#225](https://github.com/geertmeersman/miwa/pull/225) ([geertmeersman](https://github.com/geertmeersman))
+- refactor: add PR labeler workflow for SemVer label assignment and checks [\#224](https://github.com/geertmeersman/miwa/pull/224) ([geertmeersman](https://github.com/geertmeersman))
+
 ## [v1.1.0](https://github.com/geertmeersman/miwa/tree/v1.1.0) (2026-06-30)
 
 [Full Changelog](https://github.com/geertmeersman/miwa/compare/v1.0.0...v1.1.0)
